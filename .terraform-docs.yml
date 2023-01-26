@@ -1,0 +1,16 @@
+formatter: markdown table
+recursive:
+  enabled: true
+sections:
+  hide:
+    - requirements
+output:
+  file: README.md
+header-from: ./docs/.header.md
+content: |-
+  {{ .Header }}
+  {{ .Providers }}
+  {{ .Modules }}
+  {{ .Resources }}
+  {{ .Inputs }}
+  {{ .Outputs }}
