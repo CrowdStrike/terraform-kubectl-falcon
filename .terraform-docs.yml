@@ -13,3 +13,8 @@ content: |-
   {{ .Resources }}
   {{ .Inputs }}
   {{ .Outputs }}
+
+  ## Usage
+  ```hcl
+  {{ include "examples/foo/main.tf" }}
+  ```  
