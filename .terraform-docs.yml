@@ -15,6 +15,7 @@ content: |-
   {{ .Outputs }}
 
   ## Usage
+
   ```hcl
-  {{ include "examples/foo/main.tf" }}
-  ```  
+  {{ include "docs/.usage.tf" }}
+  ```
