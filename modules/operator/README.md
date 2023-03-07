@@ -29,9 +29,6 @@ Credentials (`client_id` and `client_secret`) from this step will be used in dep
 |------|---------|
 | <a name="provider_http"></a> [http](#provider\_http) | ~> 3.2.1 |
 | <a name="provider_kubectl"></a> [kubectl](#provider\_kubectl) | ~> 1.14.0 |
-## Modules
-
-No modules.
 ## Resources
 
 | Name | Type |

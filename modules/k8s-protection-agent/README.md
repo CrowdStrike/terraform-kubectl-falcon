@@ -31,9 +31,6 @@ The Kubernetes Protection Agent provides visibility into the cluster by collecti
 | Name | Version |
 |------|---------|
 | <a name="provider_helm"></a> [helm](#provider\_helm) | 2.8.0 |
-## Modules
-
-No modules.
 ## Resources
 
 | Name | Type |

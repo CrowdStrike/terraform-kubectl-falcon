@@ -28,12 +28,6 @@ Learn more about each module:
 ## Providers
 
 No providers.
-## Modules
-
-| Name | Source | Version |
-|------|--------|---------|
-| <a name="module_falcon_kpa"></a> [falcon\_kpa](#module\_falcon\_kpa) | ./modules/k8s-protection-agent | n/a |
-| <a name="module_falcon_operator"></a> [falcon\_operator](#module\_falcon\_operator) | ./modules/operator | n/a |
 ## Resources
 
 No resources.

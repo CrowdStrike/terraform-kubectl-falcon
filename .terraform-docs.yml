@@ -10,7 +10,6 @@ header-from: ./docs/.header.md
 content: |-
   {{ .Header }}
   {{ .Providers }}
-  {{ .Modules }}
   {{ .Resources }}
   {{ .Inputs }}
   {{ .Outputs }}
