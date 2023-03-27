@@ -17,7 +17,7 @@ The Kubernetes Protection Agent provides visibility into the cluster by collecti
     |-----------------------------|------------|
     | Kubernetes Protection Agent | **Write**  |
 
-2. You need a CrowdStrike Docker API Toke and CID. See [How to retrieve your Falcon Docker API Token and CID](#how-to-retrieve-your-falcon-docker-api-token-and-cid) for instructions on how to retrieve your Docker API Token and CID.
+2. You need a CrowdStrike Docker API Token and CID. See [How to retrieve your Falcon Docker API Token and CID](#how-to-retrieve-your-falcon-docker-api-token-and-cid) for instructions on how to retrieve your Docker API Token and CID.
 
 ## How to retrieve your Falcon Docker API Token and CID
 1. Log in to Falcon Console
