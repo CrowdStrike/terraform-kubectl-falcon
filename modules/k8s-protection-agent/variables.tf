@@ -32,6 +32,6 @@ variable "cloud" {
 
   validation {
     condition     = contains(["us-1", "us-2", "eu-1"], var.cloud)
-    error_message = "Cloud must be one of us-1, us-2 or eu-1"
+    error_message = "Cloud must be one of us-1, us-2 or eu-1."
   }
 }
