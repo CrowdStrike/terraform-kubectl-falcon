@@ -9,6 +9,7 @@ output:
 header-from: ./docs/.header.md
 content: |-
   {{ .Header }}
+
   {{ .Providers }}
   {{ .Resources }}
   {{ .Inputs }}

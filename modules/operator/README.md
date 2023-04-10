@@ -23,6 +23,7 @@ You will need to provide CrowdStrike API Keys and CrowdStrike cloud region for t
 | Sensor Download             | **Read**   |
 
 Credentials (`client_id` and `client_secret`) from this step will be used in deployment.
+
 ## Providers
 
 | Name | Version |
