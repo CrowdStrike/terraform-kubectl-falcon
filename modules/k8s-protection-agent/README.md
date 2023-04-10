@@ -46,9 +46,10 @@ The Kubernetes Protection Agent provides visibility into the cluster by collecti
 
 2. Run the script.
     ```shell
-    ./modules/k8s-protection-agent/helper.sh
-
+    curl -L https://raw.githubusercontent.com/crowdStrike/terraform-kubectl-falcon/v0.1.0/docs/modules/k8s-protection-agent/examples/generate_prerequisites.sh | bash
+    ```
     # Example output
+    ```shell
     Docker Access Token: AKSADKLDK
     Falcon CCID: AKFJKLAJFLK-0F
     ```
