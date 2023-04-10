@@ -20,12 +20,40 @@ The Kubernetes Protection Agent provides visibility into the cluster by collecti
 2. You need a CrowdStrike Docker API Token and CID. See [How to retrieve your Falcon Docker API Token and CID](#how-to-retrieve-your-falcon-docker-api-token-and-cid) for instructions on how to retrieve your Docker API Token and CID.
 
 ## How to retrieve your Falcon Docker API Token and CID
+
+<details>
+<summary>Using the console</summary>
+
 1. Log in to Falcon Console
 2. Navigate to https://falcon.crowdstrike.com/cloud-security/registration?return_to=eks
 3. Click Register New Kubernetes Cluster
 4. Click Self-Managed Kubernetes Service
 5. Type any value for Cluster Name and click Generate
 6. The generated config will contain both your Docker API Token and CID
+
+</details>
+
+<details>
+<summary>Using the helper script</summary>
+
+1. Add the following environment variables with your values.
+    ```shell
+    export FALCON_CLOUD=api.us-2.crowdstrike.com
+    export FALCON_CLIENT_ID=123123123
+    export FALCON_CLIENT_SECRET=12312313
+    ```
+    > Note: The `Falcon Images Download` and `Sensor Download` scopes with read permissions are required for this script to work.
+
+2. Run the script.
+    ```shell
+    ./modules/k8s-protection-agent/helper.sh
+
+    # Example output
+    Docker Access Token: AKSADKLDK
+    Falcon CCID: AKFJKLAJFLK-0F
+    ```
+</details>
+
 ## Providers
 
 | Name | Version |
