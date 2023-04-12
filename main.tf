@@ -1,10 +1,11 @@
 module "falcon_operator" {
   source = "./modules/operator"
 
-  client_id     = var.client_id
-  client_secret = var.client_secret
-  sensor_type   = var.sensor_type
-  environment   = var.environment
+  client_id        = var.client_id
+  client_secret    = var.client_secret
+  sensor_type      = var.sensor_type
+  environment      = var.environment
+  operator_version = var.operator_version
 }
 
 module "falcon_kpa" {
