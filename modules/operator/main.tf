@@ -1,5 +1,5 @@
 data "http" "falcon_operator" {
-  url = "https://github.com/CrowdStrike/falcon-operator/releases/latest/download/falcon-operator.yaml"
+  url = "https://raw.githubusercontent.com/CrowdStrike/falcon-operator/${var.operator_version}/deploy/falcon-operator.yaml"
 }
 
 data "kubectl_file_documents" "docs" {
