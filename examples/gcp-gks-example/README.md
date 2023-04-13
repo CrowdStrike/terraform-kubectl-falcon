@@ -44,8 +44,6 @@ terraform apply --var-file=terraform.tfvars
 
 ## Validate
 
-The following command will update the `kubeconfig` on your local machine and allow you to interact with your GKE Cluster using `kubectl` to validate the deployment.
-
 1. Get the credentials for your GKE cluster:
 
 After creation the following output will be displayed:
@@ -60,7 +58,7 @@ project_id = "project-id"
 region = "us-east4"
 ```
 
-Copy the `kubernetes_get_credentials_command` and run it in your terminal to update your kubeconfig.
+Copy the value of the `kubernetes_get_credentials_command` and run it in your terminal to update your kubeconfig. Now you can run `kubectl` commands against your cluster.
 
 2. List the nodes running currently
 
