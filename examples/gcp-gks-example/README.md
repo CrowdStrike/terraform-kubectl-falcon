@@ -7,7 +7,7 @@ This example shows you how to provision a GKE cluster with CrowdStrike Falcon en
 Ensure that you have the following tools installed locally:
 
 1. [gcloud](https://cloud.google.com/sdk/docs/install)
-2. [kubectl]](https://Kubernetes.io/docs/tasks/tools/)
+2. [kubectl](https://Kubernetes.io/docs/tasks/tools/)
 3. [terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli)
 
 Configure and authenticate gcloud:
