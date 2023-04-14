@@ -19,10 +19,6 @@ gcloud auth application-default login
 
 ## Deploy
 
-Update the `terraform.tfvars` file with with your desired values.
-
-> Note: You can get project_id by running `gcloud config get-value project`
-
 Set the following environment variables:
 
 ```sh
@@ -39,8 +35,10 @@ Run terraform:
 
 ```sh
 terraform init
-terraform apply --var-file=terraform.tfvars
+terraform apply
 ```
+
+> Note: You can get project_id by running `gcloud config get-value project`
 
 ## Validate
 
