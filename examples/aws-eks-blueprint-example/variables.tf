@@ -4,20 +4,31 @@ variable "cloud" {
   description = "Cloud region of the Falcon platform. Required to install KPA."
 }
 
-variable "aws_secret_name" {
-  type        = string
-  default     = "crowdstrike_falcon_addon/secrets"
-  description = "The secret name value to use when pulling the falcon credentials from AWS Secrets Manager"
-}
-
-variable "aws_secret_version_stage" {
-  type        = string
-  default     = "AWSCURRENT"
-  description = "The secret version value to use when pulling the falcon credentials from AWS Secrets Manager"
-}
-
 variable "region" {
   type        = string
   default     = "us-east-2"
   description = "The region to build in."
+}
+
+variable "client_id" {
+  type        = string
+  sensitive   = true
+  description = "Falcon API Client Id"
+}
+
+variable "client_secret" {
+  type        = string
+  sensitive   = true
+  description = "Falcon API Client Secret"
+}
+
+variable "docker_api_token" {
+  type        = string
+  sensitive   = true
+  description = "Falcon Docker API Token"
+}
+
+variable "cid" {
+  type        = string
+  description = "Customer ID (CID) of the Falcon platform."
 }
