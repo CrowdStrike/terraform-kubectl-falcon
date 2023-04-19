@@ -30,23 +30,12 @@ data "aws_eks_cluster_auth" "this" {
 
 data "aws_availability_zones" "available" {}
 
-data "aws_secretsmanager_secret" "falcon_secrets" {
-  name = var.aws_secret_name
-}
-
-data "aws_secretsmanager_secret_version" "current" {
-  secret_id     = data.aws_secretsmanager_secret.falcon_secrets.id
-  version_stage = var.aws_secret_version_stage
-}
-
 locals {
   name   = basename(path.cwd)
   region = var.region
 
   vpc_cidr = "10.0.0.0/16"
   azs      = slice(data.aws_availability_zones.available.names, 0, 3)
-
-  secrets = jsondecode(data.aws_secretsmanager_secret_version.current.secret_string)
 
   tags = {
     Blueprint  = local.name
@@ -104,12 +93,12 @@ module "eks_blueprints_kubernetes_addons" {
 module "crowdstrike_falcon" {
   source = "../.."
 
-  cid              = local.secrets["cid"]
-  client_id        = local.secrets["client_id"]
-  client_secret    = local.secrets["client_secret"]
+  cid              = var.cid
+  client_id        = var.client_id
+  client_secret    = var.client_secret
   cloud            = var.cloud
   cluster_name     = module.eks_blueprints.eks_cluster_id
-  docker_api_token = local.secrets["docker_api_token"]
+  docker_api_token = var.docker_api_token
 }
 
 #---------------------------------------------------------------

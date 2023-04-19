@@ -2,7 +2,7 @@
 
 This example shows how to provision an EKS cluster with CrowdStrike Falcon enabled.
 
-## Prerequisites:
+## Pre-requisites:
 
 Ensure that you have the following tools installed locally:
 
@@ -10,36 +10,22 @@ Ensure that you have the following tools installed locally:
 2. [kubectl](https://Kubernetes.io/docs/tasks/tools/)
 3. [terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli)
 
-Ensure AWS Secrets Manager secret named `crowdstrike_falcon_addon/secrets` exists with the following
-
-- `client_id`
-- `client_secret`
-- `docker_api_token`
-- `cid`
-
-
-Api keys can be created at https://falcon.crowdstrike.com/support/api-clients-and-keys, minimal required permissions are:
-
-For Falcon Operator:
- - Falcon Images Download: **Read**
- - Sensor Download: **Read**
-
-For Falcon KPA:
-  - Kubernetes Protection Agent: **Write**
-
-You can get both your cid and docker_api_token by:
-
-1. Log in to Falcon Console
-2. Navigate to https://falcon.crowdstrike.com/cloud-security/registration?return_to=eks
-3. Click Register New Kubernetes Cluster
-4. Click Self-Managed Kubernetes Service
-5. Type any value for Cluster Name and click Generate
-6. The generated config will contain both your Docker API Token and CID
-
-
 ## Deploy
 
 To provision this example:
+
+Set the following environment variables:
+
+```sh
+export TF_VAR_client_id=<your_client_id>
+export TF_VAR_client_secret=<your_client_secret>
+export TF_VAR_docker_api_token=<your_docker_api_token>
+export TF_VAR_cid=<your_cid>
+```
+
+See [Pre-requisites](../../README.md#pre-requisites) for instructions on how to generate your client_id, client_secret, docker_api_token, and cid.
+
+Run the following commands:
 
 ```sh
 terraform init
@@ -48,18 +34,26 @@ terraform apply
 
 Enter `yes` at command prompt to apply
 
-
 ## Validate
 
 The following command will update the `kubeconfig` on your local machine and allow you to interact with your EKS Cluster using `kubectl` to validate the deployment.
 
 1. Run `update-kubeconfig` command:
 
+After the terraform apply is complete, you will see output that similar to the below:
+
 ```sh
-aws eks --region <REGION> update-kubeconfig --name <CLUSTER_NAME>
+Apply complete! Resources: 66 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+configure_kubectl = "aws eks --region us-east-2 update-kubeconfig --name aws-eks-blueprint-example"
 ```
 
-2. List the nodes running currently
+Copy the value of `configure_kubectl` and run it in your terminal to update your kubeconfig. Now you can run `kubectl` commands against your cluster.
+
+
+1. List the nodes running currently
 
 ```sh
 kubectl get nodes
