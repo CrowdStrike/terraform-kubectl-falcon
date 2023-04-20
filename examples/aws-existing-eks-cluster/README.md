@@ -1,6 +1,6 @@
 # EKS Cluster w/ CrowdStrike Falcon
 
-This example shows how to provision an EKS cluster with CrowdStrike Falcon enabled.
+This example deploys CrowdStrike Falcon to an existing EKS cluster.
 
 ## Pre-requisites:
 
@@ -8,7 +8,7 @@ Ensure that you have the following tools installed locally:
 
 1. [aws cli](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
 2. [kubectl](https://Kubernetes.io/docs/tasks/tools/)
-3. [helm](https://helm.sh/docs/intro/install/
+3. [helm](https://helm.sh/docs/intro/install/)
 4. [terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli)
 
 ## Deploy
@@ -33,7 +33,7 @@ terraform init
 terraform apply
 ```
 
-Enter `yes` at command prompt to apply
+Provide the required inputs when prompted.
 
 ## Validate
 
@@ -44,7 +44,7 @@ The following command will update the `kubeconfig` on your local machine and all
 After the terraform apply is complete, you will see output that similar to the below:
 
 ```sh
-Apply complete! Resources: 66 added, 0 changed, 0 destroyed.
+Apply complete! Resources: 10 added, 0 changed, 0 destroyed.
 
 Outputs:
 

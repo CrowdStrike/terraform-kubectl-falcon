@@ -1,12 +1,17 @@
-variable "cloud" {
-  type        = string
-  default     = "us-1"
-  description = "Cloud region of the Falcon platform. Required to install KPA."
+variable "cluster_name" {
+  type = string
+  description = "The name of the AWS EKS cluster to deploy to."
 }
 
 variable "region" {
   type        = string
-  description = "The region to build in."
+  description = "The AWS region the EKS cluster exists in."
+}
+
+variable "cloud" {
+  type        = string
+  default     = "us-1"
+  description = "Cloud region of the Falcon platform. Required to install KPA."
 }
 
 variable "client_id" {
