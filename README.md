@@ -75,8 +75,9 @@ locals {
 }
 
 module "crowdstrike_falcon" {
-  source = "github.com/CrowdStrike/terraform-kubectl-falcon?ref=v0.1.0"
-
+  source = "CrowdStrike/falcon/kubectl"
+  version = "0.2.0"
+  
   cid              = local.secrets["cid"]
   client_id        = local.secrets["client_id"]
   client_secret    = local.secrets["client_secret"]
