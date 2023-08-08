@@ -24,10 +24,6 @@ provider "kubectl" {
   token                  = data.aws_eks_cluster_auth.this.token
 }
 
-provider "time" {
-
-}
-
 data "aws_eks_cluster_auth" "this" {
   name = module.eks.cluster_name
 }
@@ -52,7 +48,7 @@ locals {
 #---------------------------------------------------------------
 
 module "eks" {
-  source = "terraform-aws-modules/eks/aws"
+  source  = "terraform-aws-modules/eks/aws"
   version = "~> 19.0"
 
   cluster_name    = local.name
@@ -76,7 +72,7 @@ module "eks" {
 }
 
 module "eks_blueprints_kubernetes_addons" {
-  source = "aws-ia/eks-blueprints-addons/aws"
+  source  = "aws-ia/eks-blueprints-addons/aws"
   version = "~> 1.5.0"
 
   cluster_name      = module.eks.cluster_name
@@ -92,7 +88,7 @@ module "eks_blueprints_kubernetes_addons" {
 #---------------------------------------------------------------
 
 module "crowdstrike_falcon" {
-  source = "CrowdStrike/falcon/kubectl"
+  source  = "CrowdStrike/falcon/kubectl"
   version = "0.2.0"
 
   cid              = var.cid

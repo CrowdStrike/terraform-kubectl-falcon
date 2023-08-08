@@ -1,5 +1,5 @@
 variable "cluster_name" {
-  type = string
+  type        = string
   description = "The name of the AWS EKS cluster to deploy to."
 }
 

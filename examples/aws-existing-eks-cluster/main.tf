@@ -27,8 +27,8 @@ data "aws_eks_cluster" "this" {
 }
 
 module "crowdstrike_falcon" {
-  source = "CrowdStrike/falcon/kubectl"
-  version = "0.2.0"
+  source  = "CrowdStrike/falcon/kubectl"
+  version = "0.3.0"
 
   cid              = var.cid
   client_id        = var.client_id
