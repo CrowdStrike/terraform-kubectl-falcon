@@ -1,3 +1,19 @@
+resource "null_resource" "lower_cid" {
+  provisioner "local-exec" {
+    command = <<-EOF
+      cid=${var.cid}
+      trim_cid=$(echo $cid | rev | cut -c 4- | rev)
+      my_cid=$(echo $trim_cid | tr '[:upper:]' '[:lower:]')
+      printf $my_cid > cid.txt
+    EOF
+  }
+}
+
+data "local_file" "lower_cid" {
+    filename = "cid.txt"
+  depends_on = [null_resource.lower_cid]
+}
+
 resource "helm_release" "kpagent" {
   name             = "kpagent"
   chart            = "cs-k8s-protection-agent"
@@ -28,7 +44,7 @@ resource "helm_release" "kpagent" {
 
   set {
     name  = "crowdstrikeConfig.cid"
-    value = var.cid
+    value = data.local_file.lower_cid.content
   }
 
   set {
