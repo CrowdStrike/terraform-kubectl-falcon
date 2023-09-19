@@ -56,6 +56,7 @@ module "eks" {
 
   vpc_id     = module.vpc.vpc_id
   subnet_ids = module.vpc.private_subnets
+  cluster_endpoint_public_access = true
 
   eks_managed_node_groups = {
     blue = {}
@@ -89,7 +90,7 @@ module "eks_blueprints_kubernetes_addons" {
 
 module "crowdstrike_falcon" {
   source  = "CrowdStrike/falcon/kubectl"
-  version = "0.3.0"
+  version = "0.4.0"
 
   cid              = var.cid
   client_id        = var.client_id
