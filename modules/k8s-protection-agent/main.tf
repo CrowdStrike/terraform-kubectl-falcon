@@ -1,3 +1,8 @@
+locals {
+  lower_cid = "${lower(var.cid)}"
+  cid_split = "${split("-", local.lower_cid)}"
+}
+
 resource "helm_release" "kpagent" {
   name             = "kpagent"
   chart            = "cs-k8s-protection-agent"
@@ -28,7 +33,7 @@ resource "helm_release" "kpagent" {
 
   set {
     name  = "crowdstrikeConfig.cid"
-    value = var.cid
+    value = local.cid_split[0]
   }
 
   set {
