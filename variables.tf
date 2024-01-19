@@ -56,5 +56,11 @@ variable "environment" {
 variable "operator_version" {
   description = "Falcon Operator version to deploy. Can be a branch, tag, or commit hash of the falcon-operator repo."
   type        = string
-  default     = "v0.7.2"
+  default     = "v0.9.0"
+}
+
+variable "falcon_admission" {
+  type        = bool
+  description = "Whether to deploy the FalconAdmission Custom Resource (CR) to the cluster."
+  default     = true
 }

@@ -18,16 +18,24 @@ resource "kubectl_manifest" "falcon_node_sensor" {
     apiVersion: falcon.crowdstrike.com/v1alpha1
     kind: FalconNodeSensor
     metadata:
+      labels:
+        crowdstrike.com/component: sample
+        crowdstrike.com/created-by: falcon-operator
+        crowdstrike.com/instance: falcon-node-sensor
+        crowdstrike.com/managed-by: kustomize
+        crowdstrike.com/name: falconnodesensor
+        crowdstrike.com/part-of: Falcon
+        crowdstrike.com/provider: crowdstrike
       name: falcon-node-sensor
     spec:
+      falcon:
+        tags:
+        - daemonset
+        trace: none
       falcon_api:
         client_id: ${var.client_id}
         client_secret: ${var.client_secret}
         cloud_region: autodiscover
-      node: {}
-      falcon:
-        tags:
-        - ${var.environment}
     YAML
   depends_on = [
     kubectl_manifest.falcon_operator
@@ -42,6 +50,30 @@ resource "kubectl_manifest" "falcon_container_sensor" {
     kind: FalconContainer
     metadata:
       name: falcon-container-sensor
+    spec:
+      falcon_api:
+        client_id: ${var.client_id}
+        client_secret: ${var.client_secret}
+        cloud_region: autodiscover
+      registry:
+        type: crowdstrike
+      falcon:
+        tags:
+        - ${var.environment}
+    YAML
+  depends_on = [
+    kubectl_manifest.falcon_operator
+  ]
+}
+
+# # Deploy admission controller if var.falcon_admission = true
+resource "kubectl_manifest" "falcon_admission_controller" {
+  count     = var.falcon_admission ? 1 : 0
+  yaml_body = <<-YAML
+    apiVersion: falcon.crowdstrike.com/v1alpha1
+    kind: FalconAdmission
+    metadata:
+      name: falcon-admission
     spec:
       falcon_api:
         client_id: ${var.client_id}

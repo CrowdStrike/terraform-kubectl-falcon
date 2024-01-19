@@ -32,3 +32,9 @@ variable "operator_version" {
   type        = string
   default     = "v0.7.2"
 }
+
+variable "falcon_admission" {
+  description = "Whether to deploy the FalconAdmission Custom Resource (CR) to the cluster."
+  type        = bool
+  default     = true
+}
