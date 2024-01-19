@@ -31,6 +31,7 @@ resource "kubectl_manifest" "falcon_node_sensor" {
       falcon:
         tags:
         - daemonset
+        - ${var.environment}
         trace: none
       falcon_api:
         client_id: ${var.client_id}

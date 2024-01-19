@@ -7,11 +7,12 @@
 
 ## Introduction
 
-Falcon Node Sensor and Falcon Container Sensor are CrowdStrike products that provide runtime protection to the nodes and pods.
+Falcon Node Sensor and Falcon Container Sensor are CrowdStrike products that provide runtime protection to the nodes and pods. If you choose to install Falcon Node Sensor the operator will manage Kubernetes DaemonSet for you to deploy the Node Sensor onto each node of your kubernetes cluster. Alternatively, if you choose to install Falcon Container Sensor the operator will set-up deployment hook on your cluster so every new deployment will get Falcon Container inserted in each pod.
 
-If you choose to install Falcon Node Sensor the operator will manage Kubernetes DaemonSet for you to deploy the Node Sensor onto each node of your kubernetes cluster. Alternatively, if you choose to install Falcon Container Sensor the operator will set-up deployment hook on your cluster so every new deployment will get Falcon Container inserted in each pod.
+The Falcon Kubernetes Admission Controller (KAC) can be deployed to your Kubernetes cluster to monitor and review Kubernetes objects when they are created or updated. It’s deployed to a worker node in a cluster, and when enabled, it listens to post-authenticated API requests from the Kubernetes control plane. For more info about what Kubernetes admission controllers are and how they work, see [Admission Controllers Reference](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/).
 
-Detailed documentation for [FalconNodeSensor](https://github.com/CrowdStrike/falcon-operator/tree/main/docs/resources/node) and [FalconContainer](https://github.com/CrowdStrike/falcon-operator/tree/main/docs/resources/container) can be found in the [falcon-operator](https://github.com/CrowdStrike/falcon-operator) repository.
+Detailed documentation for [FalconNodeSensor](https://github.com/CrowdStrike/falcon-operator/tree/main/docs/resources/node) and [FalconContainer](https://github.com/CrowdStrike/falcon-operator/tree/main/docs/resources/container) and [FalconAdmission](https://github.com/CrowdStrike/falcon-operator/blob/main/docs/resources/admission/README.md) can be found in the [falcon-operator](https://github.com/CrowdStrike/falcon-operator) repository.
+
 
 ## Pre-requisites
 
@@ -51,6 +52,7 @@ Credentials (`client_id` and `client_secret`) from this step will be used in dep
 | <a name="input_environment"></a> [environment](#input\_environment) | Environment or 'Alias' tag | `string` | `"tf_module"` | no |
 | <a name="input_operator_version"></a> [operator\_version](#input\_operator\_version) | Falcon Operator version to deploy. Can be a branch, tag, or commit hash of the falcon-operator repo. | `string` | `"v0.7.2"` | no |
 | <a name="input_sensor_type"></a> [sensor\_type](#input\_sensor\_type) | Falcon sensor type: FalconNodeSensor or FalconContainer. | `string` | `"FalconNodeSensor"` | no |
+| <a name="falcon_admission"></a> [falcon_admission](#input\falcon_admission) | Whether to deploy the FalconAdmission Custom Resource (CR) to the cluster. | `bool` | 'true' | no |
 ## Outputs
 
 No outputs.
