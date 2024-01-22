@@ -46,6 +46,7 @@ No resources.
 | <a name="input_environment"></a> [environment](#input\_environment) | Environment or 'Alias' tag | `string` | `"tf_module"` | no |
 | <a name="input_operator_version"></a> [operator\_version](#input\_operator\_version) | Falcon Operator version to deploy. Can be a branch, tag, or commit hash of the falcon-operator repo. | `string` | `"v0.7.2"` | no |
 | <a name="input_sensor_type"></a> [sensor\_type](#input\_sensor\_type) | Falcon sensor type: FalconNodeSensor or FalconContainer. | `string` | `"FalconNodeSensor"` | no |
+| <a name="falcon_admission"></a> [falcon_admission](#input\falcon_admission) | Whether to deploy the FalconAdmission Custom Resource (CR) to the cluster. | `bool` | 'true' | no |
 ## Outputs
 
 No outputs.
@@ -76,7 +77,7 @@ locals {
 
 module "crowdstrike_falcon" {
   source = "CrowdStrike/falcon/kubectl"
-  version = "0.3.0"
+  version = "0.4.0"
 
   cid              = local.secrets["cid"]
   client_id        = local.secrets["client_id"]

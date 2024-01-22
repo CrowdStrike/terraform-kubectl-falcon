@@ -5,6 +5,7 @@ module "falcon_operator" {
   client_secret    = var.client_secret
   sensor_type      = var.sensor_type
   environment      = var.environment
+  falcon_admission = var.falcon_admission
   operator_version = var.operator_version
 }
 
