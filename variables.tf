@@ -59,6 +59,18 @@ variable "operator_version" {
   default     = "v0.9.1"
 }
 
+variable "node_sensor_mode" {
+  description = "Falcon Node Sensor mode: 'kernel' or 'bpf'."
+  type        = string
+  default     = "bpf"
+
+  validation {
+    condition     = contains(["kernel", "bpf"], var.node_sensor_mode)
+    error_message = "Falcon Node Sensor must be kernel or bpf."
+  }
+
+}
+
 variable "falcon_admission" {
   type        = bool
   description = "Whether to deploy the FalconAdmission Custom Resource (CR) to the cluster."

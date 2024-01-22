@@ -7,6 +7,7 @@ module "falcon_operator" {
   environment      = var.environment
   falcon_admission = var.falcon_admission
   operator_version = var.operator_version
+  node_sensor_mode = var.node_sensor_mode
 }
 
 module "falcon_kpa" {
