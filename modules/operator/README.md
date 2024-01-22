@@ -31,17 +31,7 @@ Credentials (`client_id` and `client_secret`) from this step will be used in dep
 | <a name="provider_http"></a> [http](#provider\_http) | ~> 3.2.1 |
 | <a name="provider_kubectl"></a> [kubectl](#provider\_kubectl) | ~> 1.14.0 |
 | <a name="provider_null"></a> [null](#provider\_null) | n/a |
-## Resources
 
-| Name | Type |
-|------|------|
-| [kubectl_manifest.falcon_container_sensor](https://registry.terraform.io/providers/gavinbunney/kubectl/latest/docs/resources/manifest) | resource |
-| [kubectl_manifest.falcon_node_sensor](https://registry.terraform.io/providers/gavinbunney/kubectl/latest/docs/resources/manifest) | resource |
-| [kubectl_manifest.falcon_operator](https://registry.terraform.io/providers/gavinbunney/kubectl/latest/docs/resources/manifest) | resource |
-| [null_resource.remove_container_sensor](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
-| [null_resource.remove_node_sensor](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
-| [http_http.falcon_operator](https://registry.terraform.io/providers/hashicorp/http/latest/docs/data-sources/http) | data source |
-| [kubectl_file_documents.docs](https://registry.terraform.io/providers/gavinbunney/kubectl/latest/docs/data-sources/file_documents) | data source |
 ## Inputs
 
 | Name | Description | Type | Default | Required |

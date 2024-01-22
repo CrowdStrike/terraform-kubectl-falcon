@@ -61,11 +61,7 @@ The Kubernetes Protection Agent provides visibility into the cluster by collecti
 | Name | Version |
 |------|---------|
 | <a name="provider_helm"></a> [helm](#provider\_helm) | >= 2.8.0 |
-## Resources
 
-| Name | Type |
-|------|------|
-| [helm_release.kpagent](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 ## Inputs
 
 | Name | Description | Type | Default | Required |
