@@ -12,7 +12,7 @@ Learn more about each module:
 | Module                                                           | Description               |
 | ---------------------------------------------------------------- | ------------------------- |
 | [operator](./modules/operator/README.md)                         | Manages sensor deployment |
-| [operator-openshift](./modules/operator/README.md)               | Manages sensor deployment on OpenShift |
+| [operator-openshift](./modules/operator-openshift/README.md)     | Manages sensor deployment on OpenShift |
 | [k8s-protection-agent](./modules/k8s-protection-agent/README.md) | Manage KPA deployment     |
 
 ## Pre-requisites
@@ -47,7 +47,7 @@ No resources.
 | <a name="input_environment"></a> [environment](#input\_environment) | Environment or 'Alias' tag | `string` | `"tf_module"` | no |
 | <a name="input_operator_version"></a> [operator\_version](#input\_operator\_version) | Falcon Operator version to deploy. Can be a branch, tag, or commit hash of the falcon-operator repo. | `string` | `"v0.9.1"` | no |
 | <a name="input_sensor_type"></a> [sensor\_type](#input\_sensor\_type) | Falcon sensor type: FalconNodeSensor or FalconContainer. | `string` | `"FalconNodeSensor"` | no |
-| <a name="input_node_sensor_mode"></a> [node\_sensor\mode](#input\_node\_sensor\_mode) | Falcon Node Sensor mode: 'kernel' or 'bpf'. | `string` | `"bpf"` | no |
+| <a name="input_node_sensor_mode"></a> [node\_sensor\_mode](#input\_node\_sensor\_mode) | Falcon Node Sensor mode: 'kernel' or 'bpf'. | `string` | `"bpf"` | no |
 | <a name="falcon_admission"></a> [falcon\_admission](#input\falcon_admission) | Whether to deploy the FalconAdmission Custom Resource (CR) to the cluster. | `bool` | 'true' | no |
 ## Outputs
 
