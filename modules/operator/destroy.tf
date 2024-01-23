@@ -16,3 +16,12 @@ resource "null_resource" "remove_node_sensor" {
   }
   depends_on = [kubectl_manifest.falcon_operator]
 }
+
+resource "null_resource" "remove_admission_controller" {
+  count = var.falcon_admission ? 1 : 0
+  provisioner "local-exec" {
+    command = "kubectl delete falconadmissions --all"
+    when    = destroy
+  }
+  depends_on = [kubectl_manifest.falcon_operator]
+}
