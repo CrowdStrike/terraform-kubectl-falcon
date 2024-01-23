@@ -79,7 +79,7 @@ variable "falcon_admission" {
 variable "platform" {
   description = "Specify whether your cluster is managed by kubernetes or openshift."
   type        = string
-  default     = "openshift"
+  default     = "kubernetes"
   
   validation {
     condition     = contains(["kubernetes", "openshift"], var.platform)
