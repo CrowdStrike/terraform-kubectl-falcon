@@ -55,7 +55,7 @@ variable "sensor_type" {
 variable "operator_version" {
   description = "Falcon Operator version to deploy. Can be a branch, tag, or commit hash of the falcon-operator repo."
   type        = string
-  default     = "v0.7.2"
+  default     = "v0.9.1"
 }
 
 # Allowed Values: UBUNTU_CONTAINERD or COS_CONTAINERD
