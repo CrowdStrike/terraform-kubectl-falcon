@@ -68,11 +68,21 @@ variable "node_sensor_mode" {
     condition     = contains(["kernel", "bpf"], var.node_sensor_mode)
     error_message = "Falcon Node Sensor must be kernel or bpf."
   }
-
 }
 
 variable "falcon_admission" {
   type        = bool
   description = "Whether to deploy the FalconAdmission Custom Resource (CR) to the cluster."
   default     = true
+}
+
+variable "platform" {
+  description = "Specify whether your cluster is managed by kubernetes or openshift."
+  type        = string
+  default     = "openshift"
+  
+  validation {
+    condition     = contains(["kubernetes", "openshift"], var.platform)
+    error_message = "Platform must be kubernetes or openshift."
+  }
 }
