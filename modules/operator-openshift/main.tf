@@ -70,22 +70,6 @@ locals {
     node:
       backend: ${var.node_sensor_mode}
   EOT
-  default_container_sensor_manifest = <<EOT
-  apiVersion: falcon.crowdstrike.com/v1alpha1
-  kind: FalconContainer
-  metadata:
-    name: falcon-sidecar-sensor
-  spec:
-    falcon_api:
-      client_id: ${var.client_id}
-      client_secret: ${var.client_secret}
-      cloud_region: autodiscover
-    registry:
-      type: crowdstrike
-    falcon:
-      tags:
-      - ${var.environment}
-  EOT
   default_admission_controller_manifest = <<EOT
   apiVersion: falcon.crowdstrike.com/v1alpha1
   kind: FalconAdmission
@@ -110,33 +94,19 @@ data "local_file" "node_sensor_manifest" {
   filename = var.node_sensor_manifest_path
 }
 
-data "local_file" "container_sensor_manifest" {
-  count = var.container_sensor_manifest_path == "default" ? 0 : 1
-  filename = var.container_sensor_manifest_path
-}
-
 data "local_file" "admission_controller_manifest" {
   count = var.admission_controller_manifest_path == "default" ? 0 : 1
   filename = var.admission_controller_manifest_path
 }
 
-# Deploy node sensor if var.sensor_type = FalconNodeSensor
+# Deploy node sensor
 resource "kubectl_manifest" "os_falcon_node_sensor" {
-  count     = var.sensor_type == "FalconNodeSensor" ? 1 : 0
   yaml_body = var.node_sensor_manifest_path == "default" ? local.default_node_sensor_manifest : data.local_file.node_sensor_manifest[0].content
   depends_on = [
     kubectl_manifest.os_operator_subscription
   ]
 }
 
-# Deploy sidecar sensor if var.sensor_type = FalconContainer
-resource "kubectl_manifest" "os_falcon_container_sensor" {
-  count     = var.sensor_type == "FalconContainer" ? 1 : 0
-  yaml_body = var.container_sensor_manifest_path == "default" ? local.default_container_sensor_manifest : data.local_file.container_sensor_manifest[0].content
-  depends_on = [
-    kubectl_manifest.os_operator_subscription
-  ]
-}
 
 # Deploy admission controller if var.falcon_admission = true
 resource "kubectl_manifest" "os_falcon_admission_controller" {
