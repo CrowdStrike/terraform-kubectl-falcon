@@ -50,3 +50,18 @@ variable "falcon_admission" {
   type        = bool
   default     = true
 }
+
+variable "node_sensor_manifest_path" {
+  type = string
+  default = "default"
+}
+
+variable "container_sensor_manifest_path" {
+  type = string
+  default = "default"
+}
+
+variable "admission_controller_manifest_path" {
+  type = string
+  default = "default"
+}

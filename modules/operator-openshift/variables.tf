@@ -49,3 +49,18 @@ variable "node_sensor_mode" {
     error_message = "Falcon Node Sensor must be kernel or bpf."
   }
 }
+
+variable "node_sensor_manifest_path" {
+  type = string
+  default = "default"
+}
+
+variable "container_sensor_manifest_path" {
+  type = string
+  default = "default"
+}
+
+variable "admission_controller_manifest_path" {
+  type = string
+  default = "default"
+}
