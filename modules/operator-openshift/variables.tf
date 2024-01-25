@@ -1,14 +1,3 @@
-variable "sensor_type" {
-  type        = string
-  default     = "FalconNodeSensor"
-  description = "Falcon sensor type: FalconNodeSensor or FalconContainer."
-
-  validation {
-    condition     = contains(["FalconNodeSensor", "FalconContainer"], var.sensor_type)
-    error_message = "Sensor type must be FalconNodeSensor or FalconContainer."
-  }
-}
-
 variable "client_id" {
   type        = string
   description = "Falcon API Client ID"
@@ -48,4 +37,19 @@ variable "node_sensor_mode" {
     condition     = contains(["kernel", "bpf"], var.node_sensor_mode)
     error_message = "Falcon Node Sensor must be kernel or bpf."
   }
+}
+
+variable "node_sensor_manifest_path" {
+  type = string
+  default = "default"
+}
+
+variable "container_sensor_manifest_path" {
+  type = string
+  default = "default"
+}
+
+variable "admission_controller_manifest_path" {
+  type = string
+  default = "default"
 }

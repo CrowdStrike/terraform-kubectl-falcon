@@ -7,11 +7,11 @@
 
 ## Introduction
 
-Falcon Node Sensor and Falcon Container Sensor are CrowdStrike products that provide runtime protection to the nodes and pods.
+Falcon Node Sensor is a CrowdStrike product that provide runtime protection to the nodes and pods.
 
-If you choose to install Falcon Node Sensor the operator will manage Kubernetes DaemonSet for you to deploy the Node Sensor onto each node of your kubernetes cluster. Alternatively, if you choose to install Falcon Container Sensor the operator will set-up deployment hook on your cluster so every new deployment will get Falcon Container inserted in each pod.
+If you choose to install Falcon Node Sensor the operator will manage Kubernetes DaemonSet for you to deploy the Node Sensor onto each node of your kubernetes cluster. 
 
-Detailed documentation for [FalconNodeSensor](https://github.com/CrowdStrike/falcon-operator/tree/main/docs/resources/node) and [FalconContainer](https://github.com/CrowdStrike/falcon-operator/tree/main/docs/resources/container) can be found in the [falcon-operator](https://github.com/CrowdStrike/falcon-operator) repository.
+Detailed documentation for [FalconNodeSensor](https://github.com/CrowdStrike/falcon-operator/tree/main/docs/resources/node)  can be found in the [falcon-operator](https://github.com/CrowdStrike/falcon-operator) repository.
 
 ## Pre-requisites
 
@@ -40,8 +40,11 @@ Credentials (`client_id` and `client_secret`) from this step will be used in dep
 | <a name="input_client_secret"></a> [client\_secret](#input\_client\_secret) | Falcon API Client Secret | `string` | n/a | yes |
 | <a name="input_environment"></a> [environment](#input\_environment) | Environment or 'Alias' tag | `string` | `"tf_module"` | no |
 | <a name="input_operator_version"></a> [operator\_version](#input\_operator\_version) | Falcon Operator version to deploy. Can be a branch, tag, or commit hash of the falcon-operator repo. | `string` | `"v0.9.1"` | no |
-| <a name="input_sensor_type"></a> [sensor\_type](#input\_sensor\_type) | Falcon sensor type: FalconNodeSensor or FalconContainer. | `string` | `"FalconNodeSensor"` | no || <a name="falcon_admission"></a> [falcon_admission](#input\falcon_admission) | Whether to deploy the FalconAdmission Custom Resource (CR) to the cluster. | `bool` | 'true' | no |
-| <a name="input_node_sensor_mode"></a> [sensor\_type](#input\_node\_sensor\_mode) | Falcon Node Sensor mode: 'kernel' or 'bpf'. | `string` | `"bpf"` | no |
+| <a name="input_falcon_admission"></a> [falcon\_admission](#input\_falcon_admission) | Whether to deploy the FalconAdmission Custom Resource (CR) to the cluster. | `bool` | 'true' | no |
+| <a name="input_node_sensor_mode"></a> [node\_sensor\_mode](#input\_node\_sensor\_mode) | Falcon Node Sensor mode: 'kernel' or 'bpf'. | `string` | `"bpf"` | no |
+| <a name="input_node_sensor_manifest_path"></a> [node\_sensor\_manifest\_path](#input\_node\_sensor\_manifest\_path) | Path to custom manifest file. eg. `./manifests/node_sensor.yaml` Leave as `default` to use the built in manifest with standard options | `string` | `"default"` | no |
+| <a name="input_admission_controller_manifest_path"></a> [admission\_controller\_manifest\_path](#input\_admission\_controller\_manifest\_path) | Path to custom manifest file. eg. `./manifests/admission_controller.yaml` Leave as `default` to use the built in manifest with standard options | `string` | `"default"` | no |
+
 ## Outputs
 
 No outputs.
@@ -71,7 +74,7 @@ locals {
 }
 
 module "crowdstrike_operator" {
-  source = "github.com/CrowdStrike/terraform-kubectl-falcon//modules/operator?ref=v0.1.0"
+  source = "github.com/CrowdStrike/terraform-kubectl-falcon//modules/operator?ref=v0.4.0"
 
   client_id        = local.secrets["client_id"]
   client_secret    = local.secrets["client_secret"]

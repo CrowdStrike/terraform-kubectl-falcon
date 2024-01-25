@@ -86,3 +86,18 @@ variable "platform" {
     error_message = "Platform must be kubernetes or openshift."
   }
 }
+
+variable "node_manifest_path" {
+  type = string
+  default = "default"
+}
+
+variable "container_sensor_manifest_path" {
+  type = string
+  default = "default"
+}
+
+variable "admission_controller_manifest_path" {
+  type = string
+  default = "default"
+}
