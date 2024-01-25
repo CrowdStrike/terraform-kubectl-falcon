@@ -12,7 +12,7 @@ Learn more about each module:
 | Module                                                           | Description               |
 | ---------------------------------------------------------------- | ------------------------- |
 | [operator](./modules/operator/README.md)                         | Manages sensor deployment |
-| [operator-openshift](./modules/operator/README.md)               | Manages sensor deployment on OpenShift |
+| [operator-openshift](./modules/operator-openshift/README.md)               | Manages sensor deployment on OpenShift |
 | [k8s-protection-agent](./modules/k8s-protection-agent/README.md) | Manage KPA deployment     |
 
 ## Pre-requisites
