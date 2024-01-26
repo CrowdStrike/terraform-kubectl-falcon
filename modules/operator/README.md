@@ -11,7 +11,9 @@ Falcon Node Sensor and Falcon Container Sensor are CrowdStrike products that pro
 
 If you choose to install Falcon Node Sensor the operator will manage Kubernetes DaemonSet for you to deploy the Node Sensor onto each node of your kubernetes cluster. Alternatively, if you choose to install Falcon Container Sensor the operator will set-up deployment hook on your cluster so every new deployment will get Falcon Container inserted in each pod.
 
-Detailed documentation for [FalconNodeSensor](https://github.com/CrowdStrike/falcon-operator/tree/main/docs/resources/node) and [FalconContainer](https://github.com/CrowdStrike/falcon-operator/tree/main/docs/resources/container) can be found in the [falcon-operator](https://github.com/CrowdStrike/falcon-operator) repository.
+Falcon Admission Controller is a CrowdStrike product that monitors and reviews Kubernetes objects when they are created or updated.
+
+Detailed documentation for [FalconNodeSensor](https://github.com/CrowdStrike/falcon-operator/tree/main/docs/resources/node), [FalconContainer](https://github.com/CrowdStrike/falcon-operator/tree/main/docs/resources/container) and [FalconAdmission](https://github.com/CrowdStrike/falcon-operator/blob/main/docs/resources/admission/README.md) can be found in the [falcon-operator](https://github.com/CrowdStrike/falcon-operator) repository.
 
 ## Pre-requisites
 

@@ -5,14 +5,14 @@
 
 # CrowdStrike Falcon
 
-This repository contains modules that can be used to automate the deployment of the CrowdStrike Falcon Sensor and the Kubernetes Protection Agent on a Kubernetes cluster.
+This repository contains modules that can be used to automate the deployment of the CrowdStrike Falcon Sensor, Falcon Admission Controller (KAC) and the Kubernetes Protection Agent (KPA) on a Kubernetes cluster.
 
 Learn more about each module:
 
 | Module                                                           | Description               |
 | ---------------------------------------------------------------- | ------------------------- |
-| [operator](./modules/operator/README.md)                         | Manages sensor deployment |
-| [operator-openshift](./modules/operator-openshift/README.md)               | Manages sensor deployment on OpenShift |
+| [operator](./modules/operator/README.md)                         | Manages Falcon Sensor and KAC deployments |
+| [operator-openshift](./modules/operator-openshift/README.md)               | Manages Falcon Sensor and KAC deployments on OpenShift |
 | [k8s-protection-agent](./modules/k8s-protection-agent/README.md) | Manage KPA deployment     |
 
 ## Pre-requisites
