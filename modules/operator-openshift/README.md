@@ -7,11 +7,13 @@
 
 ## Introduction
 
-Falcon Node Sensor is a CrowdStrike product that provide runtime protection to the nodes and pods.
+Falcon Node Sensor is a CrowdStrike product that provides runtime protection to the nodes and pods.
 
 If you choose to install Falcon Node Sensor the operator will manage Kubernetes DaemonSet for you to deploy the Node Sensor onto each node of your kubernetes cluster. 
 
-Detailed documentation for [FalconNodeSensor](https://github.com/CrowdStrike/falcon-operator/tree/main/docs/resources/node)  can be found in the [falcon-operator](https://github.com/CrowdStrike/falcon-operator) repository.
+Falcon Admission Controller is a CrowdStrike product that monitors and reviews Kubernetes objects when they are created or updated.
+
+Detailed documentation for [FalconNodeSensor](https://github.com/CrowdStrike/falcon-operator/tree/main/docs/resources/node) and [FalconAdmission](https://github.com/CrowdStrike/falcon-operator/blob/main/docs/resources/admission/README.md) can be found in the [falcon-operator](https://github.com/CrowdStrike/falcon-operator) repository.
 
 ## Pre-requisites
 
