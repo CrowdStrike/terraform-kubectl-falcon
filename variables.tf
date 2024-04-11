@@ -70,6 +70,12 @@ variable "node_sensor_mode" {
   }
 }
 
+variable "falcon_kpa" {
+  type        = bool
+  description = "Whether to deploy the Falcon Kubernetes Protection Agent to the cluster."
+  default     = true
+}
+
 variable "falcon_admission" {
   type        = bool
   description = "Whether to deploy the FalconAdmission Custom Resource (CR) to the cluster."
