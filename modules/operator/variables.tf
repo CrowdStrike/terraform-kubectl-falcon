@@ -9,6 +9,12 @@ variable "sensor_type" {
   }
 }
 
+variable "ecr" {
+  description = "Mirror Falcon Sensor Images to ECR?"
+  type        = bool
+  default     = true
+}
+
 variable "client_id" {
   type        = string
   description = "Falcon API Client ID"
@@ -64,4 +70,15 @@ variable "container_sensor_manifest_path" {
 variable "admission_controller_manifest_path" {
   type = string
   default = "default"
+}
+
+variable "cid" {
+  type        = string
+  description = "Customer ID (CID) of the Falcon platform."
+  default = "none"
+}
+
+variable "ecr_node_sensor_uri" {
+  type = string
+  default = "none"
 }

@@ -26,6 +26,17 @@ variable "cid" {
   description = "Customer ID (CID) of the Falcon platform."
 }
 
+variable "ecr" {
+  description = "Mirror Falcon Sensor Images to ECR?"
+  type        = bool
+  default     = true
+}
+
+variable "ecr_node_sensor_uri" {
+  type = string
+  default = "none"
+}
+
 variable "cloud" {
   type        = string
   description = "Falcon Cloud Region to use."

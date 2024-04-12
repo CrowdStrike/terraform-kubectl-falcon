@@ -2,9 +2,12 @@ module "falcon_operator" {
   source = "./modules/operator"
   count = var.platform == "kubernetes" ? 1 : 0
 
+  cid                                = var.cid
   client_id                          = var.client_id
   client_secret                      = var.client_secret
   sensor_type                        = var.sensor_type
+  ecr                                = var.ecr
+  ecr_node_sensor_uri                = var.ecr_node_sensor_uri
   environment                        = var.environment
   falcon_admission                   = var.falcon_admission
   operator_version                   = var.operator_version

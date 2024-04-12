@@ -40,6 +40,31 @@ locals {
     node:
       backend: ${var.node_sensor_mode}
   EOT
+  ecr_node_sensor_manifest = <<EOT
+  apiVersion: falcon.crowdstrike.com/v1alpha1
+  kind: FalconNodeSensor
+  metadata:
+    labels:
+      crowdstrike.com/component: sample
+      crowdstrike.com/created-by: falcon-operator
+      crowdstrike.com/instance: falcon-node-sensor
+      crowdstrike.com/managed-by: kustomize
+      crowdstrike.com/name: falconnodesensor
+      crowdstrike.com/part-of: Falcon
+      crowdstrike.com/provider: crowdstrike
+    name: falcon-node-sensor
+    namespace: falcon-operator
+  spec:
+    falcon:
+      cid: ${var.cid}
+      tags:
+      - daemonset
+      - ${var.environment}
+      trace: none
+    node:
+      backend: ${var.node_sensor_mode}
+      image: ${var.ecr_node_sensor_uri}
+  EOT
   default_container_sensor_manifest = <<EOT
   apiVersion: falcon.crowdstrike.com/v1alpha1
   kind: FalconContainer
@@ -51,7 +76,7 @@ locals {
       client_secret: ${var.client_secret}
       cloud_region: autodiscover
     registry:
-      type: crowdstrike
+      type: ${var.ecr ? "ecr" : "crowdstrike"}
     falcon:
       tags:
       - ${var.environment}
@@ -67,7 +92,7 @@ locals {
       client_secret: ${var.client_secret}
       cloud_region: autodiscover
     registry:
-      type: crowdstrike
+      type: ${var.ecr ? "ecr" : "crowdstrike"}
     falcon:
       tags:
       - ${var.environment}
@@ -92,7 +117,14 @@ data "local_file" "admission_controller_manifest" {
 
 # Deploy node sensor if var.sensor_type = FalconNodeSensor
 resource "kubectl_manifest" "falcon_node_sensor" {
-  count     = var.sensor_type == "FalconNodeSensor" ? 1 : 0
+  count     = var.sensor_type == "FalconNodeSensor" && var.ecr ? 1 : 0 
+  yaml_body = var.node_sensor_manifest_path == "default" ? local.ecr_node_sensor_manifest : data.local_file.node_sensor_manifest[0].content
+  depends_on = [
+    kubectl_manifest.falcon_operator
+  ]
+}
+resource "kubectl_manifest" "falcon_node_sensor" {
+  count     = var.sensor_type == "FalconNodeSensor" && var.ecr == false ? 1 : 0 
   yaml_body = var.node_sensor_manifest_path == "default" ? local.default_node_sensor_manifest : data.local_file.node_sensor_manifest[0].content
   depends_on = [
     kubectl_manifest.falcon_operator
