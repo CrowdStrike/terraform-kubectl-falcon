@@ -13,17 +13,30 @@ variable "client_secret" {
 variable "cluster_name" {
   type        = string
   description = "Your Cluster Name"
+  default = "default"
 }
 
 variable "docker_api_token" {
   type        = string
   sensitive   = true
   description = "Falcon Docker API Token"
+  default = "default"
 }
 
 variable "cid" {
   type        = string
   description = "Customer ID (CID) of the Falcon platform."
+}
+
+variable "ecr" {
+  description = "Mirror Falcon Sensor Images to ECR?"
+  type        = bool
+  default     = true
+}
+
+variable "ecr_node_sensor_uri" {
+  type = string
+  default = "none"
 }
 
 variable "cloud" {
@@ -70,6 +83,12 @@ variable "node_sensor_mode" {
   }
 }
 
+variable "falcon_kpa" {
+  type        = bool
+  description = "Whether to deploy the Falcon Kubernetes Protection Agent to the cluster."
+  default     = true
+}
+
 variable "falcon_admission" {
   type        = bool
   description = "Whether to deploy the FalconAdmission Custom Resource (CR) to the cluster."
@@ -87,7 +106,7 @@ variable "platform" {
   }
 }
 
-variable "node_manifest_path" {
+variable "node_sensor_manifest_path" {
   type = string
   default = "default"
 }
