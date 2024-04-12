@@ -116,7 +116,7 @@ data "local_file" "admission_controller_manifest" {
 }
 
 # Deploy node sensor if var.sensor_type = FalconNodeSensor
-resource "kubectl_manifest" "falcon_node_sensor" {
+resource "kubectl_manifest" "falcon_node_sensor_ecr" {
   count     = var.sensor_type == "FalconNodeSensor" && var.ecr ? 1 : 0 
   yaml_body = var.node_sensor_manifest_path == "default" ? local.ecr_node_sensor_manifest : data.local_file.node_sensor_manifest[0].content
   depends_on = [

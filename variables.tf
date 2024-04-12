@@ -13,12 +13,14 @@ variable "client_secret" {
 variable "cluster_name" {
   type        = string
   description = "Your Cluster Name"
+  default = "default"
 }
 
 variable "docker_api_token" {
   type        = string
   sensitive   = true
   description = "Falcon Docker API Token"
+  default = "default"
 }
 
 variable "cid" {
