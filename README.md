@@ -38,25 +38,28 @@ No resources.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_client_id"></a> [client\_id](#input\_client\_id) | Falcon API Client Id | `string` | n/a | yes |
-| <a name="input_client_secret"></a> [client\_secret](#input\_client\_secret) | Falcon API Client Secret | `string` | n/a | yes |
-| <a name="input_cloud"></a> [cloud](#input\_cloud) | Falcon Cloud Region to use. | `string` | n/a | yes |
-| <a name="input_cid"></a> [cid](#input\_cid) | Customer ID (CID) of the Falcon platform. | `string` | n/a | If falcon_kpa = true or ecr = true |
-| <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | Your Cluster Name | `string` | n/a | If falcon_kpa = true |
-| <a name="input_docker_api_token"></a> [docker\_api\_token](#input\_docker\_api\_token) | Falcon Docker API Token | `string` | n/a | If falcon_kpa = true |
-| <a name="input_ecr"></a> [ecr](#input\_ecr) | Whether to mirror Falcon Sensor Images to ECR.  This allows Falcon Operator source Node Sensor image from ECR (if sensor_type = FalconNodeSensor) and automatically mirror Falcon Admission Controller (if falcon_admission = true) and FalconContainer Sensor (if sensor_type = FalconContainer) to AWS ECR | `bool` | `false` | no |
-| <a name="input_ecr_node_sensor_uri"></a> [ecr_node_sensor_uri](#input\_ecr_node_sensor_uri) | ECR URI of the Falcon Node Sensor Image.  For more information on how to push the Falcon Sensor images to ECR see [falcon-container-sensor-pull](https://github.com/CrowdStrike/falcon-scripts/tree/main/bash/containers/falcon-container-sensor-pull). | `string` | `"none"` | If sensor_type = FalconNodeSensor AND ecr = true |
-| <a name="input_environment"></a> [environment](#input\_environment) | Environment or 'Alias' tag | `string` | `"tf_module"` | no |
-| <a name="input_operator_version"></a> [operator\_version](#input\_operator\_version) | Falcon Operator version to deploy. Can be a branch, tag, or commit hash of the falcon-operator repo. | `string` | `"v0.9.1"` | no |
-| <a name="input_sensor_type"></a> [sensor\_type](#input\_sensor\_type) | Falcon sensor type: FalconNodeSensor or FalconContainer. Requires `platform = kubernetes` | `string` | `"FalconNodeSensor"` | no |
-| <a name="input_node_sensor_mode"></a> [node\_sensor\_mode](#input\_node\_sensor\_mode) | Falcon Node Sensor mode: 'kernel' or 'bpf'. | `string` | `"bpf"` | no |
-| <a name="input_falcon_kpa"></a> [falcon\_kpa](#input\falcon_kpa) | Whether to deploy the Falcon Kubernetes Protection Agent to the cluster. | `bool` | `true` | no |
-| <a name="input_falcon_admission"></a> [falcon\_admission](#input\falcon_admission) | Whether to deploy the FalconAdmission Custom Resource (CR) to the cluster. | `bool` | `true` | no |
-| <a name="input_platform"></a> [platform](#input\platform) | Whether to deploy on kubernetes or OpenShift. | `string` | `"kubernetes"` | no |
+| client_id | Falcon API Client Id | `string` | n/a | yes |
+| client_secret | Falcon API Client Secret | `string` | n/a | yes |
+| cloud | Falcon Cloud Region to use. | `string` | n/a | yes |
+| cid | Customer ID (CID) of the Falcon platform. | `string` | n/a | If falcon_kpa = true or ecr = true |
+| cluster_name | Your Cluster Name | `string` | n/a | If falcon_kpa = true |
+| docker_api_token | Falcon Docker API Token | `string` | n/a | If falcon_kpa = true |
+| ecr | Whether to mirror Falcon Sensor Images to ECR.  This allows Falcon Operator source Node Sensor image from ECR (if sensor_type = FalconNodeSensor) and automatically mirror Falcon Admission Controller (if falcon_admission = true) and FalconContainer Sensor (if sensor_type = FalconContainer) to AWS ECR | `bool` | `false` | no |
+| ecr_node_sensor_uri | ECR URI of the Falcon Node Sensor Image.  For more information on how to push the Falcon Sensor images to ECR see [falcon-container-sensor-pull](https://github.com/CrowdStrike/falcon-scripts/tree/main/bash/containers/falcon-container-sensor-pull). | `string` | n/a | If sensor_type = FalconNodeSensor AND ecr = true |
+| environment | Environment or 'Alias' tag | `string` | `"tf_module"` | no |
+| operator_version | Falcon Operator version to deploy. Can be a branch, tag, or commit hash of the falcon-operator repo. | `string` | `"v0.9.1"` | no |
+| sensor_type | Falcon sensor type: FalconNodeSensor or FalconContainer. Requires `platform = kubernetes` | `string` | `"FalconNodeSensor"` | no |
+| node_sensor_mode | Falcon Node Sensor mode: 'kernel' or 'bpf'. | `string` | `"bpf"` | no |
+| falcon_kpa | Whether to deploy the Falcon Kubernetes Protection Agent to the cluster. | `bool` | `true` | no |
+| falcon_admission | Whether to deploy the FalconAdmission Custom Resource (CR) to the cluster. | `bool` | `true` | no |
+| platform | Whether to deploy on kubernetes or OpenShift. | `string` | `"kubernetes"` | no |
+| node_sensor_manifest_path | Deploy node sensor from custom manifest file. For more info on how avaliable options see [Falcon Node Sensor](https://github.com/CrowdStrike/falcon-operator/tree/main/docs/resources/node/README.md) | `string` | n/a | no |
+| container_sensor_manifest_path | Deploy container sensor from custom manifest file. For more info on how avaliable options see [Falcon Container Sensor](https://github.com/CrowdStrike/falcon-operator/tree/main/docs/resources/container/README.md) | `string` | n/a | no |
+| admission_controller_manifest_path | Deploy admission controller from custom manifest file. For more info on how avaliable options see [Falcon Admission Controller](https://github.com/CrowdStrike/falcon-operator/tree/main/docs/resources/admission/README.md) | `string` | n/a | no |
 
 
 ## Usage
-The following example demonstrates the following:
+### The following example demonstrates the following:
 - retrieve CrowdStrike API credentials from Secrets manager.
 - deploy Falcon Node Sensor
 - deploy Falcon Admission Controller
@@ -89,13 +92,55 @@ module "crowdstrike_falcon" {
   cid                 = local.secrets["cid"]
   client_id           = local.secrets["client_id"]
   client_secret       = local.secrets["client_secret"]
+  cloud               = local.secrets["cs_cloud"]
   docker_api_token    = local.secrets["docker_api_token"]
+  cluster_name        = "my-cluster"
   platform            = "kubernetes"
   sensor_type         = "FalconNodeSensor"
   falcon_admission    = true
-  falcon_kpa          = false
+  falcon_kpa          = true
   ecr                 = true
   ecr_node_sensor_uri = "123456789123.dkr.ecr.us-east-1.amazonaws.com/crowdstrike/falcon-sensor:7.11.0-16407-1.falcon-linux.x86_64.Release.US-1"
+}
+```
+
+### The following example demonstrates the following:
+- retrieve CrowdStrike API credentials from Secrets manager.
+- deploy Falcon Container Sensor from custom manifest file
+- deploy Falcon Admission Controller from custom manifest file
+
+```hcl
+provider "aws" {
+  region = us-east-1
+}
+
+data "aws_eks_cluster_auth" "this" {
+  name = module.eks_blueprints.eks_cluster_id
+}
+
+data "aws_secretsmanager_secret_version" "current" {
+  secret_id     = data.aws_secretsmanager_secret.falcon_secrets.id
+  version_stage = var.aws_secret_version_stage
+}
+
+locals {
+  secrets = jsondecode(data.aws_secretsmanager_secret_version.current.secret_string)
+}
+
+module "crowdstrike_falcon" {
+  source = "CrowdStrike/falcon/kubectl"
+  version = "0.5.0"
+
+  cid                                = local.secrets["cid"]
+  client_id                          = local.secrets["client_id"]
+  client_secret                      = local.secrets["client_secret"]
+  cloud                              = local.secrets["cs_cloud"]
+  platform                           = "kubernetes"
+  sensor_type                        = "FalconContainer"
+  falcon_admission                   = true
+  falcon_kpa                         = false
+  container_sensor_manifest_path     = "/path/to/file.yaml"
+  admission_controller_manifest_path = "/path/to/file.yaml"
 }
 ```
 <!-- END_TF_DOCS -->

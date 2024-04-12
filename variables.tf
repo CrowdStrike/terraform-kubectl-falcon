@@ -106,7 +106,7 @@ variable "platform" {
   }
 }
 
-variable "node_manifest_path" {
+variable "node_sensor_manifest_path" {
   type = string
   default = "default"
 }
