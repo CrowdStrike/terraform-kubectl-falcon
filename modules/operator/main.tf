@@ -11,6 +11,18 @@ resource "kubectl_manifest" "falcon_operator" {
   yaml_body = each.value
 }
 
+data "aws_region" "current" {}
+
+resource "terraform_data" "set_env" {
+  depends_on = [
+    kubectl_manifest.falcon_operator
+  ]
+  provisioner "local-exec" {
+    command = "kubectl set env -n falcon-operator deployment/falcon-operator-controller-manager AWS_REGION=${data.aws_region.current.name}"
+  }
+}
+
+
 # Set default manifests
 locals {
   default_node_sensor_manifest = <<EOT
@@ -26,7 +38,6 @@ locals {
       crowdstrike.com/part-of: Falcon
       crowdstrike.com/provider: crowdstrike
     name: falcon-node-sensor
-    namespace: falcon-operator
   spec:
     falcon:
       tags:
@@ -53,7 +64,6 @@ locals {
       crowdstrike.com/part-of: Falcon
       crowdstrike.com/provider: crowdstrike
     name: falcon-node-sensor
-    namespace: falcon-operator
   spec:
     falcon:
       cid: ${var.cid}
