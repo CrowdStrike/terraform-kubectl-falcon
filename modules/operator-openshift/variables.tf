@@ -28,6 +28,12 @@ variable "falcon_admission" {
   default     = true
 }
 
+variable "cleanup" {
+  type        = bool
+  description = "Whether to cleanup resources on destroy."
+  default     = true
+}
+
 variable "node_sensor_mode" {
   description = "Falcon Node Sensor mode: 'kernel' or 'bpf'."
   type        = string

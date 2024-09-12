@@ -12,6 +12,7 @@ module "falcon_operator" {
   node_sensor_manifest_path          = var.node_manifest_path
   container_sensor_manifest_path     = var.container_sensor_manifest_path
   admission_controller_manifest_path = var.admission_controller_manifest_path
+  cleanup                            = var.cleanup
 }
 
 module "falcon_operator_openshift" {
@@ -25,6 +26,7 @@ module "falcon_operator_openshift" {
   node_sensor_mode                   = var.node_sensor_mode
   node_sensor_manifest_path          = var.node_manifest_path
   admission_controller_manifest_path = var.admission_controller_manifest_path
+  cleanup                            = var.cleanup
 }
 
 module "falcon_kpa" {

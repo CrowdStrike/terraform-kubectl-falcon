@@ -51,6 +51,12 @@ variable "falcon_admission" {
   default     = true
 }
 
+variable "cleanup" {
+  type        = bool
+  description = "Whether to cleanup resources on destroy."
+  default     = true
+}
+
 variable "node_sensor_manifest_path" {
   type = string
   default = "default"

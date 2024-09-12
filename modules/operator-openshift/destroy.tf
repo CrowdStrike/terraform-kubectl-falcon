@@ -1,4 +1,5 @@
 resource "null_resource" "os_remove_node_sensor" {
+  count = var.cleanup ? 1 : 0
   provisioner "local-exec" {
     command = "kubectl delete falconnodesensor -A --all"
     when    = destroy
@@ -7,7 +8,7 @@ resource "null_resource" "os_remove_node_sensor" {
 }
 
 resource "null_resource" "os_remove_admission_controller" {
-  count = var.falcon_admission ? 1 : 0
+  count = var.cleanup && var.falcon_admission ? 1 : 0
   provisioner "local-exec" {
     command = "kubectl delete falconadmissions falcon-admission"
     when    = destroy
