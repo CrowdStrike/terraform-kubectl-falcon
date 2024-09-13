@@ -95,7 +95,7 @@ resource "kubectl_manifest" "falcon_node_sensor" {
   count     = var.sensor_type == "FalconNodeSensor" ? 1 : 0
   yaml_body = var.node_sensor_manifest_path == "default" ? local.default_node_sensor_manifest : data.local_file.node_sensor_manifest[0].content
   depends_on = [
-    kubectl_manifest.falcon_operator
+    kubectl_manifest.falcon_operator, data.local_file.node_sensor_manifest
   ]
 }
 
