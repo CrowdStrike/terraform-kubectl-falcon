@@ -76,6 +76,12 @@ variable "falcon_admission" {
   default     = true
 }
 
+variable "cleanup" {
+  type        = bool
+  description = "Whether to cleanup resources on destroy."
+  default     = true
+}
+
 variable "platform" {
   description = "Specify whether your cluster is managed by kubernetes or openshift."
   type        = string

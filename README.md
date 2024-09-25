@@ -50,6 +50,7 @@ No resources.
 | <a name="input_node_sensor_mode"></a> [node\_sensor\_mode](#input\_node\_sensor\_mode) | Falcon Node Sensor mode: 'kernel' or 'bpf'. | `string` | `"bpf"` | no |
 | <a name="input_falcon_admission"></a> [falcon\_admission](#input\falcon_admission) | Whether to deploy the FalconAdmission Custom Resource (CR) to the cluster. | `bool` | 'true' | no |
 | <a name="input_platform"></a> [platform](#input\platform) | Whether to deploy on kubernetes or OpenShift. | `string` | 'kubernetes' | no |
+| <a name="cleanup"></a> [platform](#input\cleanup) | Whether to cleanup resources on destroy. | `bool` | 'true' | no |
 
 ## Outputs
 
