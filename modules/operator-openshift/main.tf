@@ -86,6 +86,22 @@ locals {
       tags:
       - ${var.environment}
   EOT
+  default_iar_manifest = <<EOT
+  apiVersion: falcon.crowdstrike.com/v1alpha1
+  kind: FalconImageAnalyzer
+  metadata:
+    name: falcon-image-analyzer
+  spec:
+    falcon_api:
+      client_id: ${var.client_id}
+      client_secret: ${var.client_secret}
+      cloud_region: ${var.falcon_region}
+    registry:
+      type: crowdstrike
+    falcon:
+      tags:
+      - ${var.environment}
+  EOT
 }
 
 # Get custom manifests if path != "Default"
@@ -97,6 +113,11 @@ data "local_file" "node_sensor_manifest" {
 data "local_file" "admission_controller_manifest" {
   count = var.admission_controller_manifest_path == "default" ? 0 : 1
   filename = var.admission_controller_manifest_path
+}
+
+data "local_file" "iar_manifest" {
+  count = var.iar_manifest_path == "default" ? 0 : 1
+  filename = var.iar_manifest_path
 }
 
 # Deploy node sensor
@@ -112,6 +133,15 @@ resource "kubectl_manifest" "os_falcon_node_sensor" {
 resource "kubectl_manifest" "os_falcon_admission_controller" {
   count     = var.falcon_admission == true ? 1 : 0
   yaml_body = var.admission_controller_manifest_path == "default" ? local.default_admission_controller_manifest : data.local_file.admission_controller_manifest[0].content
+  depends_on = [
+    kubectl_manifest.os_operator_subscription
+  ]
+}
+
+# Deploy admission controller if var.iar = true
+resource "kubectl_manifest" "os_iar" {
+  count     = var.iar ? 1 : 0
+  yaml_body = var.iar_manifest_path == "default" ? local.default_iar_manifest : data.local_file.iar_manifest[0].content
   depends_on = [
     kubectl_manifest.os_operator_subscription
   ]
