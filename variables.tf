@@ -80,7 +80,7 @@ variable "falcon_admission" {
 variable "iar" {
   description = "Whether to deploy the Falcon Image Analyzer Custom Resource (CR) to the cluster."
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "kpa" {
