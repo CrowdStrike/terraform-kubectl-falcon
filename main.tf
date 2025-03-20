@@ -37,6 +37,7 @@ module "falcon_operator_openshift" {
 
 module "falcon_kpa" {
   source = "./modules/k8s-protection-agent"
+  count = var.kpa ? 1 : 0
 
   client_id        = var.client_id
   client_secret    = var.client_secret
