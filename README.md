@@ -41,7 +41,7 @@ No resources.
 | <a name="input_cid"></a> [cid](#input\_cid) | Customer ID (CID) of the Falcon platform. | `string` | n/a | yes |
 | <a name="input_client_id"></a> [client\_id](#input\_client\_id) | Falcon API Client Id | `string` | n/a | yes |
 | <a name="input_client_secret"></a> [client\_secret](#input\_client\_secret) | Falcon API Client Secret | `string` | n/a | yes |
-| <a name="input_cloud"></a> [cloud](#input\_cloud) | Falcon Cloud Region to use. | `string` | n/a | yes |
+| <a name="input_falcon_region"></a> [falcon\_region](#input\_falcon\_region) | Falcon Cloud Region to use. | `string` | us-1 | yes if iar = true |
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | Your Cluster Name | `string` | n/a | yes |
 | <a name="input_docker_api_token"></a> [docker\_api\_token](#input\_docker\_api\_token) | Falcon Docker API Token | `string` | n/a | yes |
 | <a name="input_environment"></a> [environment](#input\_environment) | Environment or 'Alias' tag | `string` | `"tf_module"` | no |
@@ -49,6 +49,7 @@ No resources.
 | <a name="input_sensor_type"></a> [sensor\_type](#input\_sensor\_type) | Falcon sensor type: FalconNodeSensor or FalconContainer. Requires `platform = kubernetes` | `string` | `"FalconNodeSensor"` | no |
 | <a name="input_node_sensor_mode"></a> [node\_sensor\_mode](#input\_node\_sensor\_mode) | Falcon Node Sensor mode: 'kernel' or 'bpf'. | `string` | `"bpf"` | no |
 | <a name="input_falcon_admission"></a> [falcon\_admission](#input\falcon_admission) | Whether to deploy the FalconAdmission Custom Resource (CR) to the cluster. | `bool` | 'true' | no |
+| <a name="input_iar"></a> [iar](#input\_iar) | Whether to deploy the Falcon Image Analyzer Custom Resource (CR) to the cluster. | `bool` | 'false' | no |
 | <a name="input_platform"></a> [platform](#input\platform) | Whether to deploy on kubernetes or OpenShift. | `string` | 'kubernetes' | no |
 | <a name="cleanup"></a> [cleanup](#input\cleanup) | Whether to cleanup resources on destroy. | `bool` | 'true' | no |
 

@@ -44,10 +44,13 @@ Credentials (`client_id` and `client_secret`) from this step will be used in dep
 | <a name="input_operator_version"></a> [operator\_version](#input\_operator\_version) | Falcon Operator version to deploy. Can be a branch, tag, or commit hash of the falcon-operator repo. | `string` | `"v0.9.1"` | no |
 | <a name="input_sensor_type"></a> [sensor\_type](#input\_sensor\_type) | Falcon sensor type: FalconNodeSensor or FalconContainer. | `string` | `"FalconNodeSensor"` | no |
 | <a name="input_falcon_admission"></a> [falcon\_admission](#input\_falcon_admission) | Whether to deploy the FalconAdmission Custom Resource (CR) to the cluster. | `bool` | 'true' | no |
+| <a name="input_iar"></a> [iar](#input\_iar) | Whether to deploy the Falcon Image Analyzer Custom Resource (CR) to the cluster. | `bool` | 'false' | no |
+| <a name="input_falcon_region"></a> [falcon\_region_](#input\_falcon_\_region_) | Falcon Cloud Region | `string` | 'us-1' | yes if iar = true |
 | <a name="input_node_sensor_mode"></a> [node\_sensor\_mode](#input\_node\_sensor\_mode) | Falcon Node Sensor mode: 'kernel' or 'bpf'. | `string` | `"bpf"` | no |
 | <a name="input_node_sensor_manifest_path"></a> [node\_sensor\_manifest\_path](#input\_node\_sensor\_manifest\_path) | Path to custom manifest file. eg. `./manifests/node_sensor.yaml` Leave as `default` to use the built in manifest with standard options | `string` | `"default"` | no |
 | <a name="input_container_sensor_manifest_path"></a> [container\_sensor\_manifest\_path](#input\_container\_sensor\_manifest\_path) | Path to custom manifest file. eg. `./manifests/container_sensor.yaml` Leave as `default` to use the built in manifest with standard options | `string` | `"default"` | no |
 | <a name="input_admission_controller_manifest_path"></a> [admission\_controller\_manifest\_path](#input\_admission\_controller\_manifest\_path) | Path to custom manifest file. eg. `./manifests/admission_controller.yaml` Leave as `default` to use the built in manifest with standard options | `string` | `"default"` | no |
+| <a name="input_iar_manifest_path"></a> [iar\_manifest\_path](#input\_iar\_manifest\_path) | Path to custom manifest file. eg. `./manifests/iar.yaml` Leave as `default` to use the built in manifest with standard options | `string` | `"default"` | no |
 
 ## Outputs
 
