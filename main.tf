@@ -4,7 +4,7 @@ module "falcon_operator" {
 
   client_id                          = var.client_id
   client_secret                      = var.client_secret
-  falcon_region                      = var.falcon_region
+  cloud                              = var.cloud
   sensor_type                        = var.sensor_type
   environment                        = var.environment
   falcon_admission                   = var.falcon_admission
@@ -24,7 +24,7 @@ module "falcon_operator_openshift" {
 
   client_id                          = var.client_id
   client_secret                      = var.client_secret
-  falcon_region                      = var.falcon_region
+  cloud                              = var.cloud
   environment                        = var.environment
   falcon_admission                   = var.falcon_admission
   iar                                = var.iar
@@ -43,6 +43,6 @@ module "falcon_kpa" {
   client_secret    = var.client_secret
   docker_api_token = var.docker_api_token
   cid              = var.cid
-  cloud            = var.falcon_region
+  cloud            = var.cloud
   cluster_name     = var.cluster_name
 }
