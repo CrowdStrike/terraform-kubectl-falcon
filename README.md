@@ -50,7 +50,7 @@ No resources.
 | <a name="input_docker_api_token"></a> [docker\_api\_token](#input\_docker\_api\_token) | Falcon Docker API Token | `string` | n/a | yes |
 | <a name="input_environment"></a> [environment](#input\_environment) | Environment or 'Alias' tag | `string` | `"tf_module"` | no |
 | <a name="input_falcon_admission"></a> [falcon\_admission](#input\_falcon\_admission) | Whether to deploy the FalconAdmission Custom Resource (CR) to the cluster. | `bool` | `true` | no |
-| <a name="input_falcon_region"></a> [falcon\_region](#input\_falcon\_region) | Falcon Cloud Region | `string` | `"us-1"` | no |
+| <a name="input_cloud"></a> [cloud](#input\_cloud) | Falcon Cloud Region to use. | `string` | n/a | no |
 | <a name="input_iar"></a> [iar](#input\_iar) | Whether to deploy the Falcon Image Analyzer Custom Resource (CR) to the cluster. | `bool` | `true` | no |
 | <a name="input_iar_manifest_path"></a> [iar\_manifest\_path](#input\_iar\_manifest\_path) | n/a | `string` | `"default"` | no |
 | <a name="input_kpa"></a> [kpa](#input\_kpa) | Whether to deploy the Falcon Kubernetes Protection Agent to the cluster. | `bool` | `false` | no |

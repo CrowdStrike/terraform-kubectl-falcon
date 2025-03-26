@@ -68,7 +68,7 @@ Credentials (`client_id` and `client_secret`) from this step will be used in dep
 | <a name="input_container_sensor_manifest_path"></a> [container\_sensor\_manifest\_path](#input\_container\_sensor\_manifest\_path) | n/a | `string` | `"default"` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | Environment or 'Alias' tag | `string` | `"tf_module"` | no |
 | <a name="input_falcon_admission"></a> [falcon\_admission](#input\_falcon\_admission) | Whether to deploy the FalconAdmission Custom Resource (CR) to the cluster. | `bool` | `true` | no |
-| <a name="input_falcon_region"></a> [falcon\_region](#input\_falcon\_region) | Falcon Cloud Region | `string` | `"us-1"` | no |
+| <a name="input_cloud"></a> [cloud](#input\_cloud) | Falcon Cloud Region to use. | `string` | n/a | no |
 | <a name="input_iar"></a> [iar](#input\_iar) | Whether to deploy the Falcon Image Analyzer Custom Resource (CR) to the cluster. | `bool` | `false` | no |
 | <a name="input_iar_manifest_path"></a> [iar\_manifest\_path](#input\_iar\_manifest\_path) | n/a | `string` | `"default"` | no |
 | <a name="input_node_sensor_manifest_path"></a> [node\_sensor\_manifest\_path](#input\_node\_sensor\_manifest\_path) | n/a | `string` | `"default"` | no |
