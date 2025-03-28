@@ -104,7 +104,7 @@ locals {
 }
 
 module "crowdstrike_operator" {
-  source = "github.com/CrowdStrike/terraform-kubectl-falcon//modules/operator?ref=v0.1.0"
+  source = "github.com/CrowdStrike/terraform-kubectl-falcon//modules/operator?ref=v0.6.0"
 
   client_id        = local.secrets["client_id"]
   client_secret    = local.secrets["client_secret"]
