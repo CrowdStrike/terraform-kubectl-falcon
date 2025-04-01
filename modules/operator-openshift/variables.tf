@@ -10,6 +10,17 @@ variable "client_secret" {
   sensitive   = true
 }
 
+variable "cloud" {
+  type        = string
+  description = "Falcon Cloud Region"
+  default     = "us-1"
+
+  validation {
+    condition     = contains(["us-1", "us-2", "eu-1", "us-gov-1"], var.falcon_region)
+    error_message = "Falcon Cloud Region must be us-1, us-2, eu-1 or us-gov-1"
+  }
+}
+
 variable "environment" {
   description = "Environment or 'Alias' tag"
   type        = string
@@ -26,6 +37,12 @@ variable "falcon_admission" {
   description = "Whether to deploy the FalconAdmission Custom Resource (CR) to the cluster."
   type        = bool
   default     = true
+}
+
+variable "iar" {
+  description = "Whether to deploy the Falcon Image Analyzer Custom Resource (CR) to the cluster."
+  type        = bool
+  default     = false
 }
 
 variable "cleanup" {
@@ -56,6 +73,11 @@ variable "container_sensor_manifest_path" {
 }
 
 variable "admission_controller_manifest_path" {
+  type = string
+  default = "default"
+}
+
+variable "iar_manifest_path" {
   type = string
   default = "default"
 }

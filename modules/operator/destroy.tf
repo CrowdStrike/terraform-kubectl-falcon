@@ -25,3 +25,12 @@ resource "null_resource" "remove_admission_controller" {
   }
   depends_on = [kubectl_manifest.falcon_operator]
 }
+
+resource "null_resource" "remove_iar" {
+  count = var.cleanup && var.iar ? 1 : 0
+  provisioner "local-exec" {
+    command = "kubectl delete falconimageanalyzer --all"
+    when    = destroy
+  }
+  depends_on = [kubectl_manifest.falcon_operator]
+}
