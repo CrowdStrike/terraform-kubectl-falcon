@@ -32,7 +32,7 @@ variable "cloud" {
   default     = "us-1"
 
   validation {
-    condition     = contains(["us-1", "us-2", "eu-1", "us-gov-1"], var.falcon_region)
+    condition     = contains(["us-1", "us-2", "eu-1", "us-gov-1"], var.cloud)
     error_message = "Falcon Cloud Region must be us-1, us-2, eu-1 or us-gov-1"
   }
 }
@@ -57,7 +57,7 @@ variable "environment" {
 variable "operator_version" {
   description = "Falcon Operator version to deploy. Can be a branch, tag, or commit hash of the falcon-operator repo."
   type        = string
-  default     = "v0.9.1"
+  default     = "v1.4.0"
 }
 
 variable "node_sensor_mode" {
