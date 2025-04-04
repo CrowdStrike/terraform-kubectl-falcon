@@ -90,7 +90,7 @@ locals {
 
 module "crowdstrike_falcon" {
   source = "CrowdStrike/falcon/kubectl"
-  version = "0.4.0"
+  version = "0.6.0"
 
   cid              = local.secrets["cid"]
   client_id        = local.secrets["client_id"]
