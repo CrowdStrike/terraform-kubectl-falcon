@@ -66,7 +66,7 @@ locals {
     falcon_api:
       client_id: ${var.client_id}
       client_secret: ${var.client_secret}
-      cloud_region: autodiscover
+      cloud_region: ${var.cloud}
     node:
       backend: ${var.node_sensor_mode}
   EOT
@@ -79,7 +79,7 @@ locals {
     falcon_api:
       client_id: ${var.client_id}
       client_secret: ${var.client_secret}
-      cloud_region: autodiscover
+      cloud_region: ${var.cloud}
     registry:
       type: crowdstrike
     falcon:
