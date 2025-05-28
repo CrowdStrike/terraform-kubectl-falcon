@@ -17,8 +17,8 @@ resource "kubectl_manifest" "os_operator_group" {
       name: falcon-operator
       namespace: falcon-operator
     YAML
-  depends_on = [ 
-    kubectl_manifest.os_operator_project 
+  depends_on = [
+    kubectl_manifest.os_operator_project
   ]
 }
 
@@ -36,14 +36,14 @@ resource "kubectl_manifest" "os_operator_subscription" {
       source: redhat-marketplace
       sourceNamespace: openshift-marketplace
     YAML
-  depends_on = [ 
-    kubectl_manifest.os_operator_group 
+  depends_on = [
+    kubectl_manifest.os_operator_group
   ]
 }
 
 # Set default manifests
 locals {
-  default_node_sensor_manifest = <<EOT
+  default_node_sensor_manifest          = <<EOT
   apiVersion: falcon.crowdstrike.com/v1alpha1
   kind: FalconNodeSensor
   metadata:
@@ -86,7 +86,7 @@ locals {
       tags:
       - ${var.environment}
   EOT
-  default_iar_manifest = <<EOT
+  default_iar_manifest                  = <<EOT
   apiVersion: falcon.crowdstrike.com/v1alpha1
   kind: FalconImageAnalyzer
   metadata:
@@ -106,17 +106,17 @@ locals {
 
 # Get custom manifests if path != "Default"
 data "local_file" "node_sensor_manifest" {
-  count = var.node_sensor_manifest_path == "default" ? 0 : 1
+  count    = var.node_sensor_manifest_path == "default" ? 0 : 1
   filename = var.node_sensor_manifest_path
 }
 
 data "local_file" "admission_controller_manifest" {
-  count = var.admission_controller_manifest_path == "default" ? 0 : 1
+  count    = var.admission_controller_manifest_path == "default" ? 0 : 1
   filename = var.admission_controller_manifest_path
 }
 
 data "local_file" "iar_manifest" {
-  count = var.iar_manifest_path == "default" ? 0 : 1
+  count    = var.iar_manifest_path == "default" ? 0 : 1
   filename = var.iar_manifest_path
 }
 

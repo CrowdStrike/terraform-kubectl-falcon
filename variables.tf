@@ -10,22 +10,6 @@ variable "client_secret" {
   description = "Falcon API Client Secret"
 }
 
-variable "cluster_name" {
-  type        = string
-  description = "Your Cluster Name"
-}
-
-variable "docker_api_token" {
-  type        = string
-  sensitive   = true
-  description = "Falcon Docker API Token"
-}
-
-variable "cid" {
-  type        = string
-  description = "Customer ID (CID) of the Falcon platform."
-}
-
 variable "cloud" {
   type        = string
   description = "Falcon Cloud Region"
@@ -83,12 +67,6 @@ variable "iar" {
   default     = true
 }
 
-variable "kpa" {
-  description = "Whether to deploy the Falcon Kubernetes Protection Agent to the cluster."
-  type        = bool
-  default     = false
-}
-
 variable "cleanup" {
   type        = bool
   description = "Whether to cleanup resources on destroy."
@@ -99,7 +77,7 @@ variable "platform" {
   description = "Specify whether your cluster is managed by kubernetes or openshift."
   type        = string
   default     = "kubernetes"
-  
+
   validation {
     condition     = contains(["kubernetes", "openshift"], var.platform)
     error_message = "Platform must be kubernetes or openshift."
@@ -107,21 +85,25 @@ variable "platform" {
 }
 
 variable "node_manifest_path" {
-  type = string
-  default = "default"
+  description = "Path to kubernetes file for the Node Sensor"
+  type        = string
+  default     = "default"
 }
 
 variable "container_sensor_manifest_path" {
-  type = string
-  default = "default"
+  description = "Path to kubernetes file for the Container Sensor"
+  type        = string
+  default     = "default"
 }
 
 variable "admission_controller_manifest_path" {
-  type = string
-  default = "default"
+  description = "Path to kubernetes file for the Admission Controller"
+  type        = string
+  default     = "default"
 }
 
 variable "iar_manifest_path" {
-  type = string
-  default = "default"
+  description = "Path to kubernetes file for IAR"
+  type        = string
+  default     = "default"
 }
