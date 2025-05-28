@@ -7,13 +7,6 @@
 
 This repository contains modules that can be used to automate the deployment of the CrowdStrike Falcon Sensor, Falcon Admission Controller (KAC) and Falcon Image Analyzer (IAR) on a Kubernetes cluster.
 
-Learn more about each module:
-
-| Module                                                           | Description               |
-| ---------------------------------------------------------------- | ------------------------- |
-| [operator](./modules/operator/README.md)                         | Manages Falcon Sensor, KAC and IAR deployments |
-| [operator-openshift](./modules/operator-openshift/README.md)     | Manages Falcon Sensor, KAC and IAR deployments on OpenShift |
-
 ## Pre-requisites
 
 1. You will need to provide CrowdStrike API Keys and CrowdStrike cloud region for the installation. It is recommended to establish new API credentials for the installation at https://falcon.crowdstrike.com/support/api-clients-and-keys, minimal required permissions are:
@@ -25,6 +18,12 @@ Learn more about each module:
     | Falcon Container CLI        | **Write**              |
     | Falcon Container Image      | **Read** and **Write** |
 
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_falcon_operator"></a> [falcon\_operator](#module\_falcon\_operator) | ./modules/operator | n/a |
+| <a name="module_falcon_operator_openshift"></a> [falcon\_operator\_openshift](#module\_falcon\_operator\_openshift) | ./modules/operator-openshift | n/a |
 ## Providers
 
 No providers.
