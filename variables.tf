@@ -83,12 +83,6 @@ variable "iar" {
   default     = true
 }
 
-variable "kpa" {
-  description = "Whether to deploy the Falcon Kubernetes Protection Agent to the cluster."
-  type        = bool
-  default     = false
-}
-
 variable "cleanup" {
   type        = bool
   description = "Whether to cleanup resources on destroy."

@@ -1,7 +1,7 @@
 variable "cloud" {
   type        = string
   default     = "us-1"
-  description = "Cloud region of the Falcon platform. Required to install KPA."
+  description = "Cloud region of the Falcon platform."
 }
 
 variable "region" {

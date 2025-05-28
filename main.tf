@@ -34,15 +34,3 @@ module "falcon_operator_openshift" {
   iar_manifest_path                  = var.iar_manifest_path
   cleanup                            = var.cleanup
 }
-
-module "falcon_kpa" {
-  source = "./modules/k8s-protection-agent"
-  count = var.kpa ? 1 : 0
-
-  client_id        = var.client_id
-  client_secret    = var.client_secret
-  docker_api_token = var.docker_api_token
-  cid              = var.cid
-  cloud            = var.cloud
-  cluster_name     = var.cluster_name
-}

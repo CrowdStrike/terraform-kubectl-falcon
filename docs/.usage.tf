@@ -27,5 +27,4 @@ module "crowdstrike_falcon" {
   client_secret    = local.secrets["client_secret"]
   cloud            = var.cloud
   cluster_name     = local.cluster_name
-  docker_api_token = local.secrets["docker_api_token"]
 }
