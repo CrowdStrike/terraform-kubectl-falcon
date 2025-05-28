@@ -36,8 +36,8 @@ Credentials (`client_id` and `client_secret`) from this step will be used in dep
 |------|---------|
 | <a name="provider_http"></a> [http](#provider\_http) | ~> 3.2.1 |
 | <a name="provider_kubectl"></a> [kubectl](#provider\_kubectl) | ~> 1.14.0 |
-| <a name="provider_local"></a> [local](#provider\_local) | n/a |
-| <a name="provider_null"></a> [null](#provider\_null) | n/a |
+| <a name="provider_local"></a> [local](#provider\_local) | ~> 2.5.3 |
+| <a name="provider_null"></a> [null](#provider\_null) | ~> 3.2.4 |
 ## Resources
 
 | Name | Type |
@@ -61,17 +61,17 @@ Credentials (`client_id` and `client_secret`) from this step will be used in dep
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_admission_controller_manifest_path"></a> [admission\_controller\_manifest\_path](#input\_admission\_controller\_manifest\_path) | n/a | `string` | `"default"` | no |
+| <a name="input_admission_controller_manifest_path"></a> [admission\_controller\_manifest\_path](#input\_admission\_controller\_manifest\_path) | Path to kubernetes file for the Admission Controller | `string` | `"default"` | no |
 | <a name="input_cleanup"></a> [cleanup](#input\_cleanup) | Whether to cleanup resources on destroy. | `bool` | `true` | no |
 | <a name="input_client_id"></a> [client\_id](#input\_client\_id) | Falcon API Client ID | `string` | n/a | yes |
 | <a name="input_client_secret"></a> [client\_secret](#input\_client\_secret) | Falcon API Client Secret | `string` | n/a | yes |
-| <a name="input_container_sensor_manifest_path"></a> [container\_sensor\_manifest\_path](#input\_container\_sensor\_manifest\_path) | n/a | `string` | `"default"` | no |
+| <a name="input_cloud"></a> [cloud](#input\_cloud) | Falcon Cloud Region | `string` | `"us-1"` | no |
+| <a name="input_container_sensor_manifest_path"></a> [container\_sensor\_manifest\_path](#input\_container\_sensor\_manifest\_path) | Path to kubernetes file for the Container Sensor | `string` | `"default"` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | Environment or 'Alias' tag | `string` | `"tf_module"` | no |
 | <a name="input_falcon_admission"></a> [falcon\_admission](#input\_falcon\_admission) | Whether to deploy the FalconAdmission Custom Resource (CR) to the cluster. | `bool` | `true` | no |
-| <a name="input_cloud"></a> [cloud](#input\_cloud) | Falcon Cloud Region to use. | `string` | n/a | no |
 | <a name="input_iar"></a> [iar](#input\_iar) | Whether to deploy the Falcon Image Analyzer Custom Resource (CR) to the cluster. | `bool` | `false` | no |
-| <a name="input_iar_manifest_path"></a> [iar\_manifest\_path](#input\_iar\_manifest\_path) | n/a | `string` | `"default"` | no |
-| <a name="input_node_sensor_manifest_path"></a> [node\_sensor\_manifest\_path](#input\_node\_sensor\_manifest\_path) | n/a | `string` | `"default"` | no |
+| <a name="input_iar_manifest_path"></a> [iar\_manifest\_path](#input\_iar\_manifest\_path) | Path to kubernetes file for IAR | `string` | `"default"` | no |
+| <a name="input_node_sensor_manifest_path"></a> [node\_sensor\_manifest\_path](#input\_node\_sensor\_manifest\_path) | Path to kubernetes file for the Node Sensor | `string` | `"default"` | no |
 | <a name="input_node_sensor_mode"></a> [node\_sensor\_mode](#input\_node\_sensor\_mode) | Falcon Node Sensor mode: 'kernel' or 'bpf'. | `string` | `"bpf"` | no |
 | <a name="input_operator_version"></a> [operator\_version](#input\_operator\_version) | Falcon Operator version to deploy. Can be a branch, tag, or commit hash of the falcon-operator repo. | `string` | `"v0.9.1"` | no |
 | <a name="input_sensor_type"></a> [sensor\_type](#input\_sensor\_type) | Falcon sensor type: FalconNodeSensor or FalconContainer. | `string` | `"FalconNodeSensor"` | no |
@@ -82,13 +82,20 @@ No outputs.
 ## Usage
 
 ```hcl
+locals {
+  region       = var.region
+  cloud        = var.cloud
+  cluster_name = var.cluster_name
+  secrets      = jsondecode(data.aws_secretsmanager_secret_version.current.secret_string)
+}
+
 provider "aws" {
   region = local.region
 }
 
 # Example of using secrets stored in AWS Secrets Manager
 data "aws_eks_cluster_auth" "this" {
-  name = module.eks_blueprints.eks_cluster_id
+  name = local.cluster_name
 }
 
 data "aws_secretsmanager_secret_version" "current" {
@@ -96,18 +103,13 @@ data "aws_secretsmanager_secret_version" "current" {
   version_stage = var.aws_secret_version_stage
 }
 
-locals {
-  cluster_name = "cluster-name"
-  region       = var.region
-
-  secrets = jsondecode(data.aws_secretsmanager_secret_version.current.secret_string)
-}
-
 module "crowdstrike_operator" {
-  source = "github.com/CrowdStrike/terraform-kubectl-falcon//modules/operator?ref=v0.6.0"
+  source  = "CrowdStrike/falcon/kubectl//modules/operator"
+  version = "0.7.1"
 
-  client_id        = local.secrets["client_id"]
-  client_secret    = local.secrets["client_secret"]
+  client_id     = local.secrets["client_id"]
+  client_secret = local.secrets["client_secret"]
+  cloud         = local.cloud
 }
 ```
 <!-- END_TF_DOCS -->
