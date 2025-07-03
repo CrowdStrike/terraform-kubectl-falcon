@@ -5,6 +5,7 @@ module "falcon_operator" {
   client_id                          = var.client_id
   client_secret                      = var.client_secret
   cloud                              = var.cloud
+  cid                                = var.cid
   sensor_type                        = var.sensor_type
   environment                        = var.environment
   falcon_admission                   = var.falcon_admission
@@ -25,6 +26,7 @@ module "falcon_operator_openshift" {
   client_id                          = var.client_id
   client_secret                      = var.client_secret
   cloud                              = var.cloud
+  cid                                = var.cid
   environment                        = var.environment
   falcon_admission                   = var.falcon_admission
   iar                                = var.iar

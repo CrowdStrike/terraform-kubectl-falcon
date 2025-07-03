@@ -36,7 +36,8 @@ locals {
     falcon_api:
       client_id: ${var.client_id}
       client_secret: ${var.client_secret}
-      cloud_region: ${var.cloud}
+      cloud_region: ${var.cloud}%{if var.cid != ""}
+      cid: ${var.cid}%{endif}
     node:
       backend: ${var.node_sensor_mode}
   EOT
@@ -49,7 +50,8 @@ locals {
     falcon_api:
       client_id: ${var.client_id}
       client_secret: ${var.client_secret}
-      cloud_region: ${var.cloud}
+      cloud_region: ${var.cloud}%{if var.cid != ""}
+      cid: ${var.cid}%{endif}
     registry:
       type: crowdstrike
     falcon:
@@ -65,7 +67,8 @@ locals {
     falcon_api:
       client_id: ${var.client_id}
       client_secret: ${var.client_secret}
-      cloud_region: ${var.cloud}
+      cloud_region: ${var.cloud}%{if var.cid != ""}
+      cid: ${var.cid}%{endif}
     registry:
       type: crowdstrike
     falcon:
@@ -81,7 +84,8 @@ locals {
     falcon_api:
       client_id: ${var.client_id}
       client_secret: ${var.client_secret}
-      cloud_region: ${var.cloud}
+      cloud_region: ${var.cloud}%{if var.cid != ""}
+      cid: ${var.cid}%{endif}
     registry:
       type: crowdstrike
     falcon:
@@ -118,6 +122,13 @@ resource "kubectl_manifest" "falcon_node_sensor" {
   depends_on = [
     kubectl_manifest.falcon_operator, data.local_file.node_sensor_manifest
   ]
+
+  lifecycle {
+    precondition {
+      condition     = !(var.cloud == "us-gov-2" && var.cid == "" && var.node_sensor_manifest_path == "default")
+      error_message = "CID is required when using us-gov-2 cloud region with default manifest."
+    }
+  }
 }
 
 # Deploy container sensor if var.sensor_type = FalconContainer
@@ -127,6 +138,13 @@ resource "kubectl_manifest" "falcon_container_sensor" {
   depends_on = [
     kubectl_manifest.falcon_operator
   ]
+
+  lifecycle {
+    precondition {
+      condition     = !(var.cloud == "us-gov-2" && var.cid == "" && var.container_sensor_manifest_path == "default")
+      error_message = "CID is required when using us-gov-2 cloud region with default manifest."
+    }
+  }
 }
 
 # Deploy admission controller if var.falcon_admission = true
@@ -136,6 +154,13 @@ resource "kubectl_manifest" "falcon_admission_controller" {
   depends_on = [
     kubectl_manifest.falcon_operator
   ]
+
+  lifecycle {
+    precondition {
+      condition     = !(var.cloud == "us-gov-2" && var.cid == "" && var.admission_controller_manifest_path == "default")
+      error_message = "CID is required when using us-gov-2 cloud region with default manifest."
+    }
+  }
 }
 
 # Deploy admission controller if var.iar = true
@@ -145,4 +170,11 @@ resource "kubectl_manifest" "iar" {
   depends_on = [
     kubectl_manifest.falcon_operator
   ]
+
+  lifecycle {
+    precondition {
+      condition     = !(var.cloud == "us-gov-2" && var.cid == "" && var.iar_manifest_path == "default")
+      error_message = "CID is required when using us-gov-2 cloud region with default manifest."
+    }
+  }
 }

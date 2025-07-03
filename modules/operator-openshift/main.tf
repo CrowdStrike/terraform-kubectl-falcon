@@ -66,7 +66,8 @@ locals {
     falcon_api:
       client_id: ${var.client_id}
       client_secret: ${var.client_secret}
-      cloud_region: ${var.cloud}
+      cloud_region: ${var.cloud}%{if var.cid != ""}
+      cid: ${var.cid}%{endif}
     node:
       backend: ${var.node_sensor_mode}
   EOT
@@ -79,7 +80,8 @@ locals {
     falcon_api:
       client_id: ${var.client_id}
       client_secret: ${var.client_secret}
-      cloud_region: ${var.cloud}
+      cloud_region: ${var.cloud}%{if var.cid != ""}
+      cid: ${var.cid}%{endif}
     registry:
       type: crowdstrike
     falcon:
@@ -95,7 +97,8 @@ locals {
     falcon_api:
       client_id: ${var.client_id}
       client_secret: ${var.client_secret}
-      cloud_region: ${var.cloud}
+      cloud_region: ${var.cloud}%{if var.cid != ""}
+      cid: ${var.cid}%{endif}
     registry:
       type: crowdstrike
     falcon:
@@ -126,6 +129,13 @@ resource "kubectl_manifest" "os_falcon_node_sensor" {
   depends_on = [
     kubectl_manifest.os_operator_subscription
   ]
+
+  lifecycle {
+    precondition {
+      condition     = !(var.cloud == "us-gov-2" && var.cid == "" && var.node_sensor_manifest_path == "default")
+      error_message = "CID is required when using us-gov-2 cloud region with default manifest."
+    }
+  }
 }
 
 
@@ -136,6 +146,13 @@ resource "kubectl_manifest" "os_falcon_admission_controller" {
   depends_on = [
     kubectl_manifest.os_operator_subscription
   ]
+
+  lifecycle {
+    precondition {
+      condition     = !(var.cloud == "us-gov-2" && var.cid == "" && var.admission_controller_manifest_path == "default")
+      error_message = "CID is required when using us-gov-2 cloud region with default manifest."
+    }
+  }
 }
 
 # Deploy admission controller if var.iar = true
@@ -145,4 +162,11 @@ resource "kubectl_manifest" "os_iar" {
   depends_on = [
     kubectl_manifest.os_operator_subscription
   ]
+
+  lifecycle {
+    precondition {
+      condition     = !(var.cloud == "us-gov-2" && var.cid == "" && var.iar_manifest_path == "default")
+      error_message = "CID is required when using us-gov-2 cloud region with default manifest."
+    }
+  }
 }
