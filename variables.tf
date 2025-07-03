@@ -10,17 +10,6 @@ variable "client_secret" {
   description = "Falcon API Client Secret"
 }
 
-variable "cluster_name" {
-  type        = string
-  description = "Your Cluster Name"
-}
-
-variable "docker_api_token" {
-  type        = string
-  sensitive   = true
-  description = "Falcon Docker API Token"
-}
-
 variable "cid" {
   type        = string
   description = "Customer ID (CID) of the Falcon platform."
@@ -81,12 +70,6 @@ variable "iar" {
   description = "Whether to deploy the Falcon Image Analyzer Custom Resource (CR) to the cluster."
   type        = bool
   default     = true
-}
-
-variable "kpa" {
-  description = "Whether to deploy the Falcon Kubernetes Protection Agent to the cluster."
-  type        = bool
-  default     = false
 }
 
 variable "cleanup" {
