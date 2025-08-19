@@ -5,6 +5,7 @@ module "falcon_operator" {
   client_id                          = var.client_id
   client_secret                      = var.client_secret
   cloud                              = var.cloud
+  cid                                = var.cid
   sensor_type                        = var.sensor_type
   environment                        = var.environment
   falcon_admission                   = var.falcon_admission
@@ -25,6 +26,7 @@ module "falcon_operator_openshift" {
   client_id                          = var.client_id
   client_secret                      = var.client_secret
   cloud                              = var.cloud
+  cid                                = var.cid
   environment                        = var.environment
   falcon_admission                   = var.falcon_admission
   iar                                = var.iar
@@ -33,16 +35,4 @@ module "falcon_operator_openshift" {
   admission_controller_manifest_path = var.admission_controller_manifest_path
   iar_manifest_path                  = var.iar_manifest_path
   cleanup                            = var.cleanup
-}
-
-module "falcon_kpa" {
-  source = "./modules/k8s-protection-agent"
-  count = var.kpa ? 1 : 0
-
-  client_id        = var.client_id
-  client_secret    = var.client_secret
-  docker_api_token = var.docker_api_token
-  cid              = var.cid
-  cloud            = var.cloud
-  cluster_name     = var.cluster_name
 }

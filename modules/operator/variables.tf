@@ -11,7 +11,7 @@ variable "sensor_type" {
 
 variable "client_id" {
   type        = string
-  description = "Falcon API Client ID"
+  description = "Falcon API Client Id"
   sensitive   = true
 }
 
@@ -27,9 +27,15 @@ variable "cloud" {
   default     = "us-1"
 
   validation {
-    condition     = contains(["us-1", "us-2", "eu-1", "us-gov-1"], var.cloud)
-    error_message = "Falcon Cloud Region must be us-1, us-2, eu-1 or us-gov-1"
+    condition     = contains(["us-1", "us-2", "eu-1", "us-gov-1", "us-gov-2"], var.cloud)
+    error_message = "Falcon Cloud Region must be us-1, us-2, eu-1, us-gov-1 or us-gov-2"
   }
+}
+
+variable "cid" {
+  type        = string
+  description = "Customer ID (CID) of the Falcon platform. Required when using us-gov-2 cloud region."
+  default     = ""
 }
 
 variable "environment" {
@@ -41,7 +47,7 @@ variable "environment" {
 variable "operator_version" {
   description = "Falcon Operator version to deploy. Can be a branch, tag, or commit hash of the falcon-operator repo."
   type        = string
-  default     = "v0.9.1"
+  default     = "v1.4.0"
 }
 
 variable "node_sensor_mode" {

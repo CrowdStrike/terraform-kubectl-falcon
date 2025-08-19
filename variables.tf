@@ -10,20 +10,10 @@ variable "client_secret" {
   description = "Falcon API Client Secret"
 }
 
-variable "cluster_name" {
-  type        = string
-  description = "Your Cluster Name"
-}
-
-variable "docker_api_token" {
-  type        = string
-  sensitive   = true
-  description = "Falcon Docker API Token"
-}
-
 variable "cid" {
   type        = string
-  description = "Customer ID (CID) of the Falcon platform."
+  description = "Customer ID (CID) of the Falcon platform. Required when using us-gov-2 cloud region."
+  default     = ""
 }
 
 variable "cloud" {
@@ -32,8 +22,8 @@ variable "cloud" {
   default     = "us-1"
 
   validation {
-    condition     = contains(["us-1", "us-2", "eu-1", "us-gov-1"], var.cloud)
-    error_message = "Falcon Cloud Region must be us-1, us-2, eu-1 or us-gov-1"
+    condition     = contains(["us-1", "us-2", "eu-1", "us-gov-1", "us-gov-2"], var.cloud)
+    error_message = "Falcon Cloud Region must be us-1, us-2, eu-1, us-gov-1 or us-gov-2"
   }
 }
 
@@ -81,12 +71,6 @@ variable "iar" {
   description = "Whether to deploy the Falcon Image Analyzer Custom Resource (CR) to the cluster."
   type        = bool
   default     = true
-}
-
-variable "kpa" {
-  description = "Whether to deploy the Falcon Kubernetes Protection Agent to the cluster."
-  type        = bool
-  default     = false
 }
 
 variable "cleanup" {

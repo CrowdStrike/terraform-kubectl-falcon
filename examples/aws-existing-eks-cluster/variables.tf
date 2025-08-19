@@ -11,7 +11,12 @@ variable "region" {
 variable "cloud" {
   type        = string
   default     = "us-1"
-  description = "Cloud region of the Falcon platform. Required to install KPA."
+  description = "Falcon Cloud Region"
+
+  validation {
+    condition     = contains(["us-1", "us-2", "eu-1", "us-gov-1", "us-gov-2"], var.cloud)
+    error_message = "Falcon Cloud Region must be us-1, us-2, eu-1, us-gov-1 or us-gov-2"
+  }
 }
 
 variable "client_id" {
@@ -34,5 +39,6 @@ variable "docker_api_token" {
 
 variable "cid" {
   type        = string
-  description = "Customer ID (CID) of the Falcon platform."
+  description = "Customer ID (CID) of the Falcon platform. Required when using us-gov-2 cloud region."
+  default     = ""
 }
