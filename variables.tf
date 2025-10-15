@@ -83,7 +83,7 @@ variable "platform" {
   description = "Specify whether your cluster is managed by kubernetes or openshift."
   type        = string
   default     = "kubernetes"
-  
+
   validation {
     condition     = contains(["kubernetes", "openshift"], var.platform)
     error_message = "Platform must be kubernetes or openshift."
@@ -91,21 +91,21 @@ variable "platform" {
 }
 
 variable "node_manifest_path" {
-  type = string
+  type    = string
   default = "default"
 }
 
 variable "container_sensor_manifest_path" {
-  type = string
+  type    = string
   default = "default"
 }
 
 variable "admission_controller_manifest_path" {
-  type = string
+  type    = string
   default = "default"
 }
 
 variable "iar_manifest_path" {
-  type = string
+  type    = string
   default = "default"
 }

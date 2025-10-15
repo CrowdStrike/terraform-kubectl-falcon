@@ -69,21 +69,21 @@ variable "node_sensor_mode" {
 }
 
 variable "node_sensor_manifest_path" {
-  type = string
+  type    = string
   default = "default"
 }
 
 variable "container_sensor_manifest_path" {
-  type = string
+  type    = string
   default = "default"
 }
 
 variable "admission_controller_manifest_path" {
-  type = string
+  type    = string
   default = "default"
 }
 
 variable "iar_manifest_path" {
-  type = string
+  type    = string
   default = "default"
 }
