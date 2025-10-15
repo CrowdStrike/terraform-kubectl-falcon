@@ -28,10 +28,10 @@ Credentials (`client_id` and `client_secret`) from this step will be used in dep
 
 | Name | Version |
 |------|---------|
-| <a name="provider_http"></a> [http](#provider\_http) | >= 3.2.1 |
-| <a name="provider_kubectl"></a> [kubectl](#provider\_kubectl) | >= 1.19.0 |
-| <a name="provider_local"></a> [local](#provider\_local) | n/a |
-| <a name="provider_null"></a> [null](#provider\_null) | n/a |
+| <a name="provider_http"></a> [http](#provider\_http) | 3.5.0 |
+| <a name="provider_kubectl"></a> [kubectl](#provider\_kubectl) | 1.19.0 |
+| <a name="provider_local"></a> [local](#provider\_local) | 2.5.3 |
+| <a name="provider_null"></a> [null](#provider\_null) | 3.2.4 |
 ## Resources
 
 | Name | Type |

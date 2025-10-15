@@ -5,14 +5,14 @@
 
 # CrowdStrike Falcon
 
-This repository contains modules that can be used to automate the deployment of the CrowdStrike Falcon Sensor and the Kubernetes Protection Agent on a Kubernetes cluster.
+This repository contains modules that can be used to automate the deployment of the CrowdStrike Falcon Sensor, Falcon Admission Controller (KAC) and Falcon Image Analyzer (IAR) on Kubernetes clusters.
 
 Learn more about each module:
 
 | Module                                                           | Description               |
 | ---------------------------------------------------------------- | ------------------------- |
 | [operator](./modules/operator/README.md)                         | Manages sensor deployment |
-| [k8s-protection-agent](./modules/k8s-protection-agent/README.md) | Manage KPA deployment     |
+| [operator-openshift](./modules/operator-openshift/README.md)     | Manages sensor deployment on OpenShift clusters |
 
 ## Pre-requisites
 
@@ -24,10 +24,6 @@ Learn more about each module:
     | Sensor Download             | **Read**               |
     | Falcon Container CLI        | **Write**              |
     | Falcon Container Image      | **Read** and **Write** |
-    | Kubernetes Protection Agent | **Write**              |
-    | Kubernetes Protection       | **Read** and **Write** |
-
-2. You need a CrowdStrike Docker API Token and CID. See [How to retrieve your Falcon Docker API Token and CID](./modules//k8s-protection-agent/README.md#how-to-retrieve-your-falcon-docker-api-token-and-cid) for instructions on how to retrieve your Docker API Token and CID.
 
 ## Providers
 
@@ -91,7 +87,6 @@ module "crowdstrike_falcon" {
   client_secret    = local.secrets["client_secret"]
   cloud            = var.cloud
   cluster_name     = local.cluster_name
-  docker_api_token = local.secrets["docker_api_token"]
 }
 ```
 <!-- END_TF_DOCS -->
