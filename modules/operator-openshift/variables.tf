@@ -69,21 +69,26 @@ variable "node_sensor_mode" {
 }
 
 variable "node_sensor_manifest_path" {
-  type    = string
-  default = "default"
+  type        = string
+  default     = "default"
+  description = "Path to custom node sensor manifest file. Use 'default' to use the built-in manifest."
 }
 
-variable "container_sensor_manifest_path" {
-  type    = string
-  default = "default"
-}
+# Note: Container sensor deployment is not supported in OpenShift module
+# variable "container_sensor_manifest_path" {
+#   type        = string
+#   default     = "default"
+#   description = "Path to custom container sensor manifest file. Use 'default' to use the built-in manifest."
+# }
 
 variable "admission_controller_manifest_path" {
-  type    = string
-  default = "default"
+  type        = string
+  default     = "default"
+  description = "Path to custom admission controller manifest file. Use 'default' to use the built-in manifest."
 }
 
 variable "iar_manifest_path" {
-  type    = string
-  default = "default"
+  type        = string
+  default     = "default"
+  description = "Path to custom image analyzer manifest file. Use 'default' to use the built-in manifest."
 }

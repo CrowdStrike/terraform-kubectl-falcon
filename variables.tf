@@ -91,21 +91,25 @@ variable "platform" {
 }
 
 variable "node_manifest_path" {
-  type    = string
-  default = "default"
+  description = "Path to custom node sensor manifest file. Use 'default' to use the built-in manifest."
+  type        = string
+  default     = "default"
 }
 
 variable "container_sensor_manifest_path" {
-  type    = string
-  default = "default"
+  description = "Path to custom container sensor manifest file. Use 'default' to use the built-in manifest."
+  type        = string
+  default     = "default"
 }
 
 variable "admission_controller_manifest_path" {
-  type    = string
-  default = "default"
+  description = "Path to custom admission controller manifest file. Use 'default' to use the built-in manifest."
+  type        = string
+  default     = "default"
 }
 
 variable "iar_manifest_path" {
-  type    = string
-  default = "default"
+  description = "Path to custom image analyzer manifest file. Use 'default' to use the built-in manifest."
+  type        = string
+  default     = "default"
 }
