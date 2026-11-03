@@ -45,9 +45,9 @@ variable "environment" {
 }
 
 variable "operator_version" {
-  description = "Falcon Operator version to deploy. Can be a branch, tag, or commit hash of the falcon-operator repo."
+  description = "Falcon Operator version to deploy. Pin to a full commit SHA for supply-chain safety (SOLAR-2683). Can be a branch, tag, or commit hash of the falcon-operator repo."
   type        = string
-  default     = "v1.4.0"
+  default     = "3fc81f3d314a183056b3118008f4e75befc30093" # v1.4.0
 }
 
 variable "node_sensor_mode" {
