@@ -17,6 +17,7 @@ module "falcon_operator" {
   admission_controller_manifest_path = var.admission_controller_manifest_path
   iar_manifest_path                  = var.iar_manifest_path
   cleanup                            = var.cleanup
+  kubectl_context                    = var.kubectl_context
 }
 
 module "falcon_operator_openshift" {

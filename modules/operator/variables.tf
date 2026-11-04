@@ -80,6 +80,12 @@ variable "cleanup" {
   default     = true
 }
 
+variable "kubectl_context" {
+  type        = string
+  description = "kubectl context name to target when running destroy-time cleanup commands. Defaults to the ambient kubeconfig context if not set."
+  default     = ""
+}
+
 variable "node_sensor_manifest_path" {
   type        = string
   default     = "default"
