@@ -11,20 +11,6 @@ resource "kubectl_manifest" "falcon_operator" {
   yaml_body = each.value
 }
 
-# Store Falcon API credentials in a Kubernetes Secret so they are not embedded
-# in plaintext inside Custom Resource specs (SOLAR-2684).
-resource "kubernetes_secret" "falcon_api_credentials" {
-  metadata {
-    name      = "falcon-api-credentials"
-    namespace = "falcon-operator"
-  }
-  data = {
-    client_id     = var.client_id
-    client_secret = var.client_secret
-  }
-  depends_on = [kubectl_manifest.falcon_operator]
-}
-
 # Set default manifests
 locals {
   default_node_sensor_manifest          = <<EOT
@@ -48,9 +34,10 @@ locals {
       - ${var.environment}
       trace: none
     falcon_api:
+      client_id: ${var.client_id}
+      client_secret: ${var.client_secret}
       cloud_region: ${var.cloud}%{if var.cid != ""}
       cid: ${var.cid}%{endif}
-      falconSecret: falcon-api-credentials
     node:
       backend: ${var.node_sensor_mode}
   EOT
@@ -61,9 +48,10 @@ locals {
     name: falcon-container-sensor
   spec:
     falcon_api:
+      client_id: ${var.client_id}
+      client_secret: ${var.client_secret}
       cloud_region: ${var.cloud}%{if var.cid != ""}
       cid: ${var.cid}%{endif}
-      falconSecret: falcon-api-credentials
     registry:
       type: crowdstrike
     falcon:
@@ -77,9 +65,10 @@ locals {
     name: falcon-admission
   spec:
     falcon_api:
+      client_id: ${var.client_id}
+      client_secret: ${var.client_secret}
       cloud_region: ${var.cloud}%{if var.cid != ""}
       cid: ${var.cid}%{endif}
-      falconSecret: falcon-api-credentials
     registry:
       type: crowdstrike
     falcon:
@@ -93,9 +82,10 @@ locals {
     name: falcon-image-analyzer
   spec:
     falcon_api:
+      client_id: ${var.client_id}
+      client_secret: ${var.client_secret}
       cloud_region: ${var.cloud}%{if var.cid != ""}
       cid: ${var.cid}%{endif}
-      falconSecret: falcon-api-credentials
     registry:
       type: crowdstrike
     falcon:

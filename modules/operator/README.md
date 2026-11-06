@@ -30,7 +30,6 @@ Credentials (`client_id` and `client_secret`) from this step will be used in dep
 |------|---------|
 | <a name="provider_http"></a> [http](#provider\_http) | >= 3.2.1 |
 | <a name="provider_kubectl"></a> [kubectl](#provider\_kubectl) | >= 1.19.0 |
-| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | >= 2.0.0 |
 | <a name="provider_local"></a> [local](#provider\_local) | >= 2.0.0 |
 | <a name="provider_null"></a> [null](#provider\_null) | >= 3.0.0 |
 ## Resources
@@ -42,7 +41,6 @@ Credentials (`client_id` and `client_secret`) from this step will be used in dep
 | [kubectl_manifest.falcon_node_sensor](https://registry.terraform.io/providers/gavinbunney/kubectl/latest/docs/resources/manifest) | resource |
 | [kubectl_manifest.falcon_operator](https://registry.terraform.io/providers/gavinbunney/kubectl/latest/docs/resources/manifest) | resource |
 | [kubectl_manifest.iar](https://registry.terraform.io/providers/gavinbunney/kubectl/latest/docs/resources/manifest) | resource |
-| [kubernetes_secret.falcon_api_credentials](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/secret) | resource |
 | [null_resource.remove_admission_controller](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
 | [null_resource.remove_container_sensor](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
 | [null_resource.remove_iar](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
