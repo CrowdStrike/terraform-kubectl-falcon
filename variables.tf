@@ -79,6 +79,12 @@ variable "cleanup" {
   default     = true
 }
 
+variable "kubectl_context" {
+  type        = string
+  description = "kubectl context name to target when running destroy-time cleanup commands. Defaults to the ambient kubeconfig context if not set."
+  default     = ""
+}
+
 variable "platform" {
   description = "Specify whether your cluster is managed by kubernetes or openshift."
   type        = string

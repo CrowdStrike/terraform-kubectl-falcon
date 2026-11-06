@@ -46,6 +46,7 @@ No resources.
 | <a name="input_falcon_admission"></a> [falcon\_admission](#input\_falcon\_admission) | Whether to deploy the FalconAdmission Custom Resource (CR) to the cluster. | `bool` | `true` | no |
 | <a name="input_iar"></a> [iar](#input\_iar) | Whether to deploy the Falcon Image Analyzer Custom Resource (CR) to the cluster. | `bool` | `true` | no |
 | <a name="input_iar_manifest_path"></a> [iar\_manifest\_path](#input\_iar\_manifest\_path) | Path to custom image analyzer manifest file. Use 'default' to use the built-in manifest. | `string` | `"default"` | no |
+| <a name="input_kubectl_context"></a> [kubectl\_context](#input\_kubectl\_context) | kubectl context name to target when running destroy-time cleanup commands. Defaults to the ambient kubeconfig context if not set. | `string` | `""` | no |
 | <a name="input_node_manifest_path"></a> [node\_manifest\_path](#input\_node\_manifest\_path) | Path to custom node sensor manifest file. Use 'default' to use the built-in manifest. | `string` | `"default"` | no |
 | <a name="input_node_sensor_mode"></a> [node\_sensor\_mode](#input\_node\_sensor\_mode) | Falcon Node Sensor mode: 'kernel' or 'bpf'. | `string` | `"bpf"` | no |
 | <a name="input_operator_version"></a> [operator\_version](#input\_operator\_version) | Falcon Operator version to deploy. Can be a branch, tag, or commit hash of the falcon-operator repo. | `string` | `"v1.4.0"` | no |
